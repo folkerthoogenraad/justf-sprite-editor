@@ -1,0 +1,11 @@
+<div class="sprite-view"
+    (mouseup)="mouseUp($event)"
+    (mousedown)="mouseDown($event)"
+    (mousemove)="mouseMove($event)"
+    (wheel)="wheel($event)"
+    [style]="backgroundStyles()"
+    (keydown)="keyDown($event)"
+    tabindex="0"
+    #viewport>
+    <ng-content></ng-content>
+</div>

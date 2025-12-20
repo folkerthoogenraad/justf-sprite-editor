@@ -1,0 +1,9 @@
+@mixin border {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+@mixin clickable {
+    cursor: pointer;
+    user-select: none;
+}

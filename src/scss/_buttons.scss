@@ -1,0 +1,15 @@
+@use "defaults" as defaults;
+
+.button {
+    display: inline-flex;
+
+    padding: 0px 6px;
+    
+    @include defaults.border;
+    @include defaults.clickable;
+
+    // Regular buttons
+    background-color: white;
+    &:hover { background-color: #eee; }
+    &:active { background-color: #ddd; }
+}

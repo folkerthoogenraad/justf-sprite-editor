@@ -1,0 +1,8 @@
+@if(!state.loading() && state.texture() !== undefined) {
+    <img
+        (mousedown)="mouseDown($event)"
+        [src]="state.texture()!.url" 
+        alt=""
+        [style]="style()"
+        #image>
+}

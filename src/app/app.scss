@@ -1,0 +1,19 @@
+.app-container {
+    display: grid;
+    grid-template-areas: 
+        "nav"
+        "sprite-view";
+
+    grid-template-rows: auto 1fr;
+
+    width: 100vw;
+    height: 100vh;
+
+    app-navbar {
+        grid-area: nav;
+    }
+
+    app-sprite-view {
+        grid-area: sprite-view;
+    }
+}

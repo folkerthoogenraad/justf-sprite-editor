@@ -1,0 +1,14 @@
+.outline {
+    position: absolute;
+    transform-origin: top left;
+
+    border: 2px solid rgba(0, 0, 0, 0.5);
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &.selected {
+        background-color: red;
+    }
+}
