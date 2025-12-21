@@ -4,18 +4,41 @@
 
 html,
 body {
-
     margin: 0;
     padding: 0;
 
-    font-family: "Comfortaa", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: normal;
+    font-family: "Oxygen Mono", sans-serif;
+    font-weight: 400;
     font-style: normal;
+    font-size: 16px;
+
+    --gap: 8px;
 
     --border-radius: 4px;
     --border-width: 1px;
     --border-color: rgb(172, 172, 172);
+
+    --color-white: white;
+    --color-black: black;
+
+    --color-text: #332;
+
+    --color-blue: #276ec0;
+    --color-text-on-blue: white;
+
+    --color-dark-blue: #19569b;
+    --color-text-on-dark-blue: white;
+
+    --color-gray-100: #e7e6de;
+    --color-text-on-gray-100: var(--color-text);
+
+    --color-gray-200: #cac9be;
+    --color-text-on-gray-200: var(--color-text);
+
+    color: var(--color-text);
+
+    --handle-radius: 6px;
+    --handle-size: 12px;
 }
 
 h1,

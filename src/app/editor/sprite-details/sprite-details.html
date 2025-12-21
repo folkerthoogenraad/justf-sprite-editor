@@ -1,0 +1,8 @@
+@if(!sprite()) {
+    <p>No sprite selected (or multiple)</p>
+}
+
+@else {
+    <p>{{ sprite()?.id }}</p>
+    <p>{{ sprite()?.texture }}</p>
+}

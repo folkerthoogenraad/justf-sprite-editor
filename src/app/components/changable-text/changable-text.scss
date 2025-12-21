@@ -1,0 +1,27 @@
+.text{
+
+    &.open {
+        .value { display: none; }
+    }
+    &:not(.open) {
+        .input { display: none; }
+    }
+}
+
+input {
+    font-family: inherit;
+    font-size: inherit;
+    
+    color: unset;
+    background-color: unset;
+
+    padding-block: 0;
+    padding-inline: 0;
+
+    border:none;
+    padding: 0;
+
+    outline: none;
+
+    width: auto;
+}

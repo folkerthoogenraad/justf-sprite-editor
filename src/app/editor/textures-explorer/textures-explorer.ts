@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
+import { ProjectFolderService } from '../project-folder-service';
 import { Button } from "../../components/button/button";
 import { EditorStateService } from '../editor-state-service';
-import { ProjectFolderService } from '../project-folder-service';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-textures-explorer',
   imports: [Button],
-  templateUrl: './navbar.html',
-  styleUrl: './navbar.scss',
+  templateUrl: './textures-explorer.html',
+  styleUrl: './textures-explorer.scss',
 })
-export class Navbar {
+export class TexturesExplorer {
   folder = inject(ProjectFolderService);
   state = inject(EditorStateService);
 }

@@ -1,0 +1,10 @@
+@use "sidebarpanel";
+@use "defaults";
+
+.sprites {
+    display: flex;
+
+    .sprite {
+        @include defaults.selectable-list-item;
+    }
+}

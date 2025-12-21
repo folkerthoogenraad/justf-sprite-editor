@@ -6,10 +6,14 @@ import { SpriteViewDebugComponent } from "./editor/sprite-view-debug-component/s
 import { SpriteViewService } from './editor/sprite-view-service';
 import { EditorStateService } from './editor/editor-state-service';
 import { SpriteViewSpriteOutlineComponent } from "./editor/sprite-view-sprite-outline-component/sprite-view-sprite-outline-component";
+import { Sidebar } from "./editor/sidebar/sidebar";
+import { TexturesExplorer } from "./editor/textures-explorer/textures-explorer";
+import { SpritesExplorer } from "./editor/sprites-explorer/sprites-explorer";
+import { SpriteDetails } from "./editor/sprite-details/sprite-details";
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, SpriteView, SpriteViewTextureComponent, SpriteViewSpriteOutlineComponent],
+  imports: [Navbar, SpriteView, SpriteViewTextureComponent, SpriteViewSpriteOutlineComponent, Sidebar, TexturesExplorer, SpritesExplorer, SpriteDetails],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -1,0 +1,15 @@
+@use "sidebarpanel";
+@use "defaults";
+
+.loading, .no-folder {
+    justify-content: center;
+    align-items: center;
+}
+
+.files {
+    display: flex;
+
+    .file {
+        @include defaults.selectable-list-item;
+    }
+}

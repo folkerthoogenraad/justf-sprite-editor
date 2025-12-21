@@ -2,13 +2,23 @@
 <div class="app-container">
   <app-navbar></app-navbar>
 
+  <app-sidebar class="left">
+    <app-textures-explorer />
+    <app-sprites-explorer />
+  </app-sidebar>
+  
+  <app-sidebar class="right">
+    <app-sprite-details [sprite]="state.selectedSprite()" (spriteChange)="state.updateSprite(state.selectedSprite(), $event)" />
+  </app-sidebar>
+
   <app-sprite-view>
     <app-sprite-view-texture-component></app-sprite-view-texture-component>
 
-    @for (sprite of state.sprites(); track sprite.id) {
+    @for (sprite of state.spritesForTexture(); track sprite.id) {
       <app-sprite-view-sprite-outline-component
         [sprite]="sprite"
         [selected]="state.isSelected(sprite)"
+        (spriteChange)="state.updateSprite(sprite, $event)"
         (select)="state.select(sprite)" />
     }
   </app-sprite-view>

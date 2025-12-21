@@ -41,27 +41,31 @@ export class SpriteView implements AfterViewInit {
   mouseX: number = 0;
   mouseY: number = 0;
 
-  dragging: boolean = false;
+  draggingPointer: number = -1;
 
-  mouseDown(evt: MouseEvent) {
+  onPointerDown(evt: PointerEvent) {
     this.defaultMouseEvent(evt);
     
-    this.dragging = true;
+    if(this.draggingPointer > 0) return;
+    
+    this.draggingPointer = evt.pointerId;
   }
-  mouseUp(evt: MouseEvent) {
+  onPointerUp(evt: PointerEvent) {
     this.defaultMouseEvent(evt);
 
-    this.dragging = false;
-  }
-  mouseMove(evt: MouseEvent) {
-    this.defaultMouseEvent(evt);
-
-    if(this.dragging) {
-      this.viewport.pan(
-        -this.viewport.toViewportScale(this.mouseDeltaX), 
-        -this.viewport.toViewportScale(this.mouseDeltaY),
-      );
+    if(this.draggingPointer -= evt.pointerId) {
+      this.draggingPointer = -1;
     }
+  }
+  onPointerMove(evt: PointerEvent) {
+    this.defaultMouseEvent(evt);
+
+    if(this.draggingPointer !== evt.pointerId) return;
+
+    this.viewport.pan(
+      -this.viewport.toViewportScale(this.mouseDeltaX), 
+      -this.viewport.toViewportScale(this.mouseDeltaY),
+    );
   }
   wheel(evt: WheelEvent) {
     let s = evt.deltaY;
@@ -77,18 +81,18 @@ export class SpriteView implements AfterViewInit {
     }
   }
   keyDown(evt: KeyboardEvent){
-    if(evt.key == "ArrowLeft") {
-      this.viewport.pan(-16, 0);
-    }
-    if(evt.key == "ArrowRight") {
-      this.viewport.pan(16, 0);
-    }
-    if(evt.key == "ArrowUp") {
-      this.viewport.pan(0, -16);
-    }
-    if(evt.key == "ArrowDown") {
-      this.viewport.pan(0, 16);
-    }
+    // if(evt.key == "ArrowLeft") {
+    //   this.viewport.pan(-16, 0);
+    // }
+    // if(evt.key == "ArrowRight") {
+    //   this.viewport.pan(16, 0);
+    // }
+    // if(evt.key == "ArrowUp") {
+    //   this.viewport.pan(0, -16);
+    // }
+    // if(evt.key == "ArrowDown") {
+    //   this.viewport.pan(0, 16);
+    // }
   }
 
   private defaultMouseEvent(evt: MouseEvent) {

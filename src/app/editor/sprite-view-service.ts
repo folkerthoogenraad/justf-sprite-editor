@@ -70,6 +70,10 @@ export class SpriteViewService {
     this.viewportTop.update(y => y + deltaY);
   }
 
+  toPixelScale(n: number){ 
+    return n * this.zoomLevel();
+  }
+
   toViewportScale(n: number) {
     return n / this.zoomLevel();
   }

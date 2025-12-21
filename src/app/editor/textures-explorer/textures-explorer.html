@@ -1,0 +1,34 @@
+@if(folder.loading()) {
+<p>Loading...</p>
+}
+
+<div class="sidebar-panel">
+    <div class="heading">
+        <div class="title">Texture explorer</div>
+        <div class="actions">
+            <c-button (click)="folder.reloadTextureList()">R</c-button>
+        </div>
+    </div>
+    @if(folder.loading()) {
+        <div class="content loading">
+            <p>Loading...</p>
+        </div>
+    }
+    @else if(!folder.folder()) {
+        <div class="content no-folder">
+            <p>No folder has been selected.</p>
+            <c-button (click)="folder.openFolder()">Select folder</c-button>
+        </div>
+    }
+    @else {
+        <div class="content files">
+            @for (texture of folder.textures(); track $index) {
+                <div 
+                    class="file"
+                    [class.selected]="state.texture()?.fileName == texture"
+                    (click)="state.selectTexture(texture)">{{ texture }}</div>
+            }
+        </div>
+    }
+</div>
+

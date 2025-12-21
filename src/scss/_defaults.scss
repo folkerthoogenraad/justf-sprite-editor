@@ -3,7 +3,45 @@
     border-radius: var(--border-radius);
 }
 
+@mixin border-bottom {
+    border-bottom: var(--border-width) solid var(--border-color);
+}
+
+
+@mixin overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 @mixin clickable {
     cursor: pointer;
     user-select: none;
+}
+
+@mixin selectable-list-item {
+    cursor: default;
+    user-select: none;
+
+    padding: 2px 8px;
+    border-radius: var(--border-radius);
+
+    &:hover {
+        color: var(--color-text-on-gray-100);
+        background-color: var(--color-gray-100);
+    }
+    &:active {
+        color: var(--color-text-on-gray-200);
+        background-color: var(--color-gray-200);
+    }
+    &.selected {
+        color: var(--color-text-on-blue);
+        background-color: var(--color-blue);
+    }
+    &.selected:active {
+        color: var(--color-text-on-dark-blue);
+        background-color: var(--color-dark-blue);
+    }
 }

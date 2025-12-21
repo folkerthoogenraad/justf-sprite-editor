@@ -2,13 +2,45 @@
     position: absolute;
     transform-origin: top left;
 
-    border: 2px solid rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--color-gray-100);
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.1);
     }
 
     &.selected {
-        background-color: red;
+        border-color: var(--color-blue);
     }
+
+    .handle {
+        &.center {position: absolute; top:50%;; left: 50%;}
+        &.top-left {position: absolute; top: 0; left: 0}
+        &.top-right {position: absolute; top: 0; left: 100%;}
+        &.bottom-left {position: absolute; top: 100%; left: 0}
+        &.bottom-right {position: absolute; top: 100%; left: 100%;}
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sprite-id, .sprite-size {
+    font-size: 0.8em;
+
+    position:absolute;
+
+    color: var(--color-white);
+    background-color: var(--color-black);
+
+    white-space: nowrap;
+}
+
+.sprite-id {
+    left: var(--handle-radius);
+    bottom: 100%;
+}
+.sprite-size {
+    right: var(--handle-radius);
+    bottom: 0;
 }
