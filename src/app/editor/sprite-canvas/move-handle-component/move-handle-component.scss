@@ -1,0 +1,21 @@
+@use "defaults" as defaults;
+
+.handle-root {
+    position: absolute;
+
+    .handle-display {
+        width: var(--handle-size);
+        height: var(--handle-size);
+    
+        border: 2px solid var(--color-green);
+        background-color: white;
+    
+        transform: translate(-50%, -50%) rotate(45deg);
+        
+        cursor: crosshair;
+    }
+    .preview {
+        @include defaults.readable-text;
+        white-space: pre;
+    }
+}

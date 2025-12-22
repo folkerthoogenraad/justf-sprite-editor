@@ -1,5 +1,5 @@
 import { Component, inject, input, output } from '@angular/core';
-import { SpriteViewService } from '../../sprite-view-service';
+import { ViewportService } from '../../viewport-service';
 import { Point } from '../../../../ts/utils/Point';
 
 type Direction = "n" | "e" | "s" | "w" | "ne" | "nw" | "se" | "sw" | "none";
@@ -11,7 +11,7 @@ type Direction = "n" | "e" | "s" | "w" | "ne" | "nw" | "se" | "sw" | "none";
   styleUrl: './resize-handle-component.scss',
 })
 export class SpriteViewResizeHandle {
-  viewport = inject(SpriteViewService);
+  viewport = inject(ViewportService);
 
   handleMoved = output<Point>();
   handlePreviewMoved = output<Point>();

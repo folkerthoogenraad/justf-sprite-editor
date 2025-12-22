@@ -6,7 +6,7 @@
     <div class="heading">
         <div class="title">Texture explorer</div>
         <div class="actions">
-            <c-button (click)="folder.reloadTextureList()">R</c-button>
+            <c-button (click)="folder.reloadTextureList()" title="Refresh">R</c-button>
         </div>
     </div>
     @if(folder.loading()) {

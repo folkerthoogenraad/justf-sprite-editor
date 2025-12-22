@@ -1,4 +1,4 @@
 <div class="text" [class.open]="open()">
-    <span class="value" (pointerdown)="onPointerDown($event)">{{ value() }}</span>
+    <span class="value" (pointerdown)="onPointerDown($event)">{{ valueInternal() }}</span>
     <input spellcheck="false" #input class="input" type="text" [(ngModel)]="valueInternal" (blur)="onBlur()" (keydown)="onInputKeyDown($event)">
 </div>

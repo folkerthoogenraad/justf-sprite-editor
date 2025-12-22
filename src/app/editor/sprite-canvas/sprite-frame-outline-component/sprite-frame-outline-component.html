@@ -9,20 +9,21 @@
         (pointerdown)="onPointerDown($event)"
         (pointerup)="onPointerUp($event)"
         (pointermove)="onPointerMove($event)">
-
         
         @if(selected()){
-            <div class="sprite-id">
-                <c-changable-text [value]="sprite().id" (valueChange)="updateSpriteName($event)"></c-changable-text>
-            </div>
             <div class="sprite-size">{{ (outline().bottom - outline().top) }}x{{ (outline().right - outline().left) }}</div>
-            
-            <app-resize-handle-component class="handle center" direction="none"></app-resize-handle-component>
 
             <app-resize-handle-component (handlePreviewMoved)="updatePreviewTopLeft($event)" (handleMoved)="updateTopLeft($event)" class="handle top-left" direction="nw"></app-resize-handle-component>
             <app-resize-handle-component (handlePreviewMoved)="updatePreviewTopRight($event)"  (handleMoved)="updateTopRight($event)" class="handle top-right" direction="ne"></app-resize-handle-component>
             <app-resize-handle-component (handlePreviewMoved)="updatePreviewBottomRight($event)"  (handleMoved)="updateBottomRight($event)" class="handle bottom-right" direction="se"></app-resize-handle-component>
             <app-resize-handle-component (handlePreviewMoved)="updatePreviewBottomLeft($event)"  (handleMoved)="updateBottomLeft($event)" class="handle bottom-left" direction="sw"></app-resize-handle-component>
+        
+            <app-move-handle-component [x]="frame().originX" [y]="frame().originY" (handleMoved)="updateOrigin($event)"></app-move-handle-component>
+        }
+        @else {
+            <app-point-component [x]="frame().originX" [y]="frame().originY" [absolute]="false">
+                <div class="origin-display"></div>
+            </app-point-component>
         }
     </div>
 }

@@ -23,6 +23,9 @@ body {
 
     --color-text: #332;
 
+    --color-green: #32a14e;
+    --color-text-on-green: white;
+
     --color-blue: #276ec0;
     --color-text-on-blue: white;
 
@@ -34,6 +37,9 @@ body {
 
     --color-gray-200: #cac9be;
     --color-text-on-gray-200: var(--color-text);
+
+    --color-gray-300: #8f8e83;
+    --color-text-on-gray-300: var(--color-text);
 
     color: var(--color-text);
 

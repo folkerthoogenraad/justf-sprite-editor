@@ -1,8 +1,9 @@
 <div class="sidebar-panel">
     <div class="heading">
-        <div class="title">Sprites explorer</div>
+        <div class="title">Sprites explorer ({{sprites().length }})</div>
         <div class="actions">
-            <c-button (click)="duplicateSelected()">D</c-button>
+            <c-button (click)="duplicateSelected()" title="Duplicate selected sprite">DUP</c-button>
+            <c-button (click)="deleteSelected()" title="Delete selected sprite">DEL</c-button>
         </div>
     </div>
     @if(!state.resources()) {
@@ -12,7 +13,7 @@
     }
     @else {
         <div class="content sprites">
-            @for (sprite of state.spritesForTexture(); track sprite.id) {
+            @for (sprite of sprites(); track sprite.id) {
                 <div 
                     class="sprite" 
                     [class.selected]="state.isSelected(sprite)"

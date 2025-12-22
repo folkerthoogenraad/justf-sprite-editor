@@ -1,30 +1,30 @@
 import { ReadOnlyArray } from "./utils/ReadOnlyArray";
 
 export interface SpriteData {
-    id: string;
-    texture: string;
-    frames: SpriteFrameData[];
+    id?: string;
+    texture?: string;
+    frames?: SpriteFrameData[];
 }
 
 export class Sprite {
     constructor(
-        public readonly id : string,
-        public readonly texture : string,
+        public readonly id: string,
+        public readonly texture: string,
         public readonly frames: SpriteFrame[]
     ) { }
 
     setId(id: string) {
         return new Sprite(id, this.texture, this.frames);
     }
-    
-    setTextureId(textureId: string){
+
+    setTextureId(textureId: string) {
         return new Sprite(this.id, textureId, this.frames);
     }
 
     addFrame(frame: SpriteFrame) {
         return this.setFrames(ReadOnlyArray.add(this.frames, frame));
     }
-    
+
     updateFrame(old: SpriteFrame, current: SpriteFrame) {
         return this.setFrames(ReadOnlyArray.replace(this.frames, old, current));
     }
@@ -41,22 +41,25 @@ export class Sprite {
         return {
             id: this.id,
             texture: this.texture,
-            frames: this.frames.map(x => x.serialize())
+            frames: this.frames?.map(x => x.serialize()),
         };
     }
 
     static deserialize(data: SpriteData) {
-        return new Sprite(data.id, data.texture, data.frames.map(x => SpriteFrame.deserialize(x)));
+        return new Sprite(
+            data.id ?? "missing", 
+            data.texture ?? "missing", 
+            data.frames?.map(x => SpriteFrame.deserialize(x)) ?? []);
     }
 }
 
 export interface SpriteFrameData {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    originX: number;
-    originY: number;
+    x?: number;
+    y?: number;
+    width?: number;
+    height?: number;
+    originX?: number;
+    originY?: number;
 }
 
 export class SpriteFrame {
@@ -67,7 +70,7 @@ export class SpriteFrame {
     readonly originX: number;
     readonly originY: number;
 
-    constructor(x: number, y: number, width: number, height: number, originX: number, originY: number){
+    constructor(x: number, y: number, width: number, height: number, originX: number, originY: number) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -97,6 +100,12 @@ export class SpriteFrame {
         };
     }
     static deserialize(data: SpriteFrameData) {
-        return new SpriteFrame(data.x, data.y, data.width, data.height, data.originX, data.originY);
+        return new SpriteFrame(
+            data.x ?? 0, 
+            data.y ?? 0, 
+            data.width ?? 0, 
+            data.height ?? 0,
+            data.originX ?? 0, 
+            data.originY ?? 0);
     }
 }

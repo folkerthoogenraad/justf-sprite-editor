@@ -45,3 +45,8 @@
         background-color: var(--color-dark-blue);
     }
 }
+
+@mixin readable-text {
+    color: var(--color-white);
+    text-shadow: 1px 1px 3px var(--color-black);
+}

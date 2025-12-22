@@ -1,0 +1,10 @@
+.point {
+    position: absolute;
+
+    &.centered {
+        transform: translate(-50%, -50%);
+    }
+    &.clickthrough {
+        pointer-events: none;
+    }
+}

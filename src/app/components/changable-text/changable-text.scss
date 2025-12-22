@@ -1,14 +1,27 @@
 .text{
+    position: relative;
+
+    .value {
+        white-space: pre;
+    }
 
     &.open {
-        .value { display: none; }
+        .value { visibility: hidden; }
     }
+
     &:not(.open) {
         .input { display: none; }
     }
 }
 
 input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+
     font-family: inherit;
     font-size: inherit;
     

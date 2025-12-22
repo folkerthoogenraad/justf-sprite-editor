@@ -1,10 +1,9 @@
 <div class="sprite-view"
-    (pointerup)="onPointerUp($event)"
-    (pointerdown)="onPointerDown($event)"
-    (pointermove)="onPointerMove($event)"
-    (wheel)="wheel($event)"
     [style]="backgroundStyles()"
-    (keydown)="keyDown($event)"
+    (pointerdown)="onPointerDown($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointermove)="onPointerMove($event)"
+    (wheel)="onMouseWheel($event)"
     tabindex="0"
     #viewport>
     <ng-content></ng-content>

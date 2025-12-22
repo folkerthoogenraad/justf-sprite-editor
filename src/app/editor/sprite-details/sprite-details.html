@@ -5,4 +5,7 @@
 @else {
     <p>{{ sprite()?.id }}</p>
     <p>{{ sprite()?.texture }}</p>
+
+    <c-button (click)="addFrame()">Add frame</c-button>
+    <c-button (click)="removeLastFrame()">Remove last frame</c-button>
 }

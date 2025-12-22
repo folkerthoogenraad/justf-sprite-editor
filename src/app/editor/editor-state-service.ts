@@ -80,6 +80,10 @@ export class EditorStateService {
     this.selectTexture(sprite.texture);
   }
 
+  deselectAll() {
+    this.selectedSpriteIds.set(new Set<string>());
+  }
+
   // ================================================= //
   // Editing
   // ================================================= //

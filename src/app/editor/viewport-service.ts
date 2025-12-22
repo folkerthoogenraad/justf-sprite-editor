@@ -3,7 +3,8 @@ import { computed, Injectable, isSignal, signal, Signal } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class SpriteViewService {
+export class ViewportService {
+  element = signal<HTMLElement | undefined>(undefined);
   zoomLevel = signal(1);
 
   viewportLeft = signal(0);
@@ -104,18 +105,33 @@ export class SpriteViewService {
       return `translate(${xx * this.zoomLevel() - this.viewportLeft() * this.zoomLevel() }px, ${yy * this.zoomLevel() - this.viewportTop()  * this.zoomLevel() }px) scale(${this.zoomLevel()})`;
     });
   }
-  computedLeft(x: Signal<number> | number) {
+  computedLeft(x: Signal<number> | number, absolute: Signal<boolean> | boolean = true) {
     return computed(() => {
       let xx = isSignal(x) ? x() : x;
+      let abs = isSignal(absolute) ? absolute() : absolute;
 
-      return xx * this.zoomLevel() - this.viewportLeft() * this.zoomLevel();
+      let offset = 0;
+
+      if(abs) {
+        offset += this.viewportLeft() * this.zoomLevel();
+      }
+
+      return xx * this.zoomLevel() - offset;;
     });
   }
-  computedTop(y: Signal<number> | number) {
+  computedTop(y: Signal<number> | number, absolute: Signal<boolean> | boolean = true) {
     return computed(() => {
       let yy = isSignal(y) ? y() : y;
 
-      return yy * this.zoomLevel() - this.viewportTop()  * this.zoomLevel();
+      let abs = isSignal(absolute) ? absolute() : absolute;
+
+      let offset = 0;
+
+      if(abs) {
+        offset += this.viewportTop()  * this.zoomLevel();
+      }
+
+      return yy * this.zoomLevel() - offset;
     });
   }
   computedSize(size: Signal<number> | number) {

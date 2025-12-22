@@ -1,0 +1,5 @@
+@use "defaults";
+
+.background {
+    @include defaults.overlay;
+}

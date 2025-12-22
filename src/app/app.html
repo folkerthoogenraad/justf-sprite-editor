@@ -11,15 +11,22 @@
     <app-sprite-details [sprite]="state.selectedSprite()" (spriteChange)="state.updateSprite(state.selectedSprite(), $event)" />
   </app-sidebar>
 
-  <app-sprite-view>
-    <app-sprite-view-texture-component></app-sprite-view-texture-component>
+  <app-sprite-canvas>
+    <app-select-component></app-select-component>
+    <app-texture-component></app-texture-component>
 
     @for (sprite of state.spritesForTexture(); track sprite.id) {
-      <app-sprite-view-sprite-outline-component
+      <!-- <app-sprite-frame-outline-component
         [sprite]="sprite"
         [selected]="state.isSelected(sprite)"
         (spriteChange)="state.updateSprite(sprite, $event)"
-        (select)="state.select(sprite)" />
+        (select)="state.select(sprite)" /> -->
+        <app-sprite-outline-component 
+          [sprite]="sprite"
+          [selected]="state.isSelected(sprite)"
+          (spriteChange)="state.updateSprite(sprite, $event)"
+          (select)="state.select(sprite)"
+          ></app-sprite-outline-component>
     }
-  </app-sprite-view>
+  </app-sprite-canvas>
 </div>

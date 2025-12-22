@@ -3,6 +3,12 @@
 
 .sprites {
     display: flex;
+    flex-direction: column;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    max-height: 600px;
 
     .sprite {
         @include defaults.selectable-list-item;

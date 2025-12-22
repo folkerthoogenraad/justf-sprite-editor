@@ -1,26 +1,26 @@
-import { Component, computed, effect, inject, signal, untracked } from '@angular/core';
+import { Component, effect, inject, signal, untracked } from '@angular/core';
 import { Navbar } from "./editor/navbar/navbar";
-import { SpriteView } from "./editor/sprite-view/sprite-view";
-import { SpriteViewTextureComponent } from "./editor/sprite-view-texture-component/sprite-view-texture-component";
-import { SpriteViewDebugComponent } from "./editor/sprite-view-debug-component/sprite-view-debug-component";
-import { SpriteViewService } from './editor/sprite-view-service';
+import { SpriteCanvas } from "./editor/sprite-canvas/sprite-canvas";
+import { TextureComponent } from "./editor/sprite-canvas/texture-component/texture-component";
+import { ViewportService } from './editor/viewport-service';
 import { EditorStateService } from './editor/editor-state-service';
-import { SpriteViewSpriteOutlineComponent } from "./editor/sprite-view-sprite-outline-component/sprite-view-sprite-outline-component";
 import { Sidebar } from "./editor/sidebar/sidebar";
 import { TexturesExplorer } from "./editor/textures-explorer/textures-explorer";
 import { SpritesExplorer } from "./editor/sprites-explorer/sprites-explorer";
 import { SpriteDetails } from "./editor/sprite-details/sprite-details";
+import { SpriteOutlineComponent } from "./editor/sprite-canvas/sprite-outline-component/sprite-outline-component";
+import { SelectComponent } from "./editor/sprite-canvas/select-component/select-component";
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, SpriteView, SpriteViewTextureComponent, SpriteViewSpriteOutlineComponent, Sidebar, TexturesExplorer, SpritesExplorer, SpriteDetails],
+  imports: [Navbar, SpriteCanvas, TextureComponent, Sidebar, TexturesExplorer, SpritesExplorer, SpriteDetails, SpriteOutlineComponent, SelectComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
   protected readonly title = signal('sprite-tile-editor');
 
-  viewport = inject(SpriteViewService);
+  viewport = inject(ViewportService);
   state = inject(EditorStateService);
 
   constructor() {

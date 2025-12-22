@@ -1,9 +1,11 @@
 import { Component, computed, effect, ElementRef, inject, input, output, provideEnvironmentInitializer, signal, untracked, viewChild } from '@angular/core';
-import { Sprite } from '../../../ts/Sprite';
-import { SpriteViewService } from '../sprite-view-service';
-import { SpriteViewResizeHandle } from "../canvas/resize-handle-component/resize-handle-component";
-import { Point } from '../../../ts/utils/Point';
-import { ChangableText } from "../../components/changable-text/changable-text";
+import { Sprite, SpriteFrame } from '../../../../ts/Sprite';
+import { ViewportService } from '../../viewport-service';
+import { SpriteViewResizeHandle } from "../resize-handle-component/resize-handle-component";
+import { Point } from '../../../../ts/utils/Point';
+import { ChangableText } from "../../../components/changable-text/changable-text";
+import { MoveHandleComponent } from "../move-handle-component/move-handle-component";
+import { PointComponent } from "../point-component/point-component";
 
 interface Outline {
   top: number;
@@ -13,31 +15,22 @@ interface Outline {
 }
 
 @Component({
-  selector: 'app-sprite-view-sprite-outline-component',
-  imports: [SpriteViewResizeHandle, ChangableText],
-  templateUrl: './sprite-view-sprite-outline-component.html',
-  styleUrl: './sprite-view-sprite-outline-component.scss',
+  selector: 'app-sprite-frame-outline-component',
+  imports: [SpriteViewResizeHandle, MoveHandleComponent, PointComponent],
+  templateUrl: './sprite-frame-outline-component.html',
+  styleUrl: './sprite-frame-outline-component.scss',
 })
-export class SpriteViewSpriteOutlineComponent {
+export class SpriteFrameOutlineComponent {
   outlineElement = viewChild<ElementRef<HTMLElement>>("outlineElement");
 
-  viewport = inject(SpriteViewService);
+  viewport = inject(ViewportService);
 
   selected = input(false);
   
   select = output();
 
-  sprite = input.required<Sprite>();
-  spriteChange = output<Sprite>();
-
-  frame = computed(() => {
-    const sprite = this.sprite();
-
-    if(!sprite) return undefined;
-    if(sprite.frames.length === 0) return undefined;
-
-    return sprite.frames[0];
-  });
+  frame = input.required<SpriteFrame>();
+  frameChange = output<SpriteFrame>();
 
   outlineFrame = signal<Outline>({ top: 0, left: 0, bottom: 0, right: 0 });
   outlinePreview = signal<Outline | undefined>(undefined);
@@ -88,6 +81,7 @@ export class SpriteViewSpriteOutlineComponent {
   dragPointerEnd: Point = new Point(0, 0);
   
   onPointerDown(evt: PointerEvent) {
+    if(evt.button !== 0) return;
     if(this.dragPointerId >= 0) return;
     if(evt.target !== this.outlineElement()?.nativeElement) return;
 
@@ -218,14 +212,13 @@ export class SpriteViewSpriteOutlineComponent {
     
     this.commit();
   }
-
   // =============================================================== //
   // Commiting changes to sprite frame
   // =============================================================== //
   commit() {
     this.outlinePreview.set(undefined);
 
-    const sprite = this.sprite();
+    const sprite = this.frame();
     const frame = this.frame();
     const outline = this.outlineFrame();
 
@@ -238,16 +231,19 @@ export class SpriteViewSpriteOutlineComponent {
 
     const updatedFrame = frame.setPosition(x, y).setSize(width, height);
 
-    const updatedSprite = sprite.updateFrame(frame, updatedFrame);
+    this.frameChange.emit(updatedFrame);
+  }  
 
-    this.spriteChange.emit(updatedSprite);
-  }
+  updateOrigin(offset: Point) {
+    const sprite = this.frame();
+    const frame = this.frame();
 
-  updateSpriteName(text: string) {
-    const sprite = this.sprite();
+    if(!sprite || !frame) return;
+
+    console.dir(offset);
     
-    if(!sprite) return;
-
-    this.spriteChange.emit(sprite.setId(text));
+    const updatedFrame = frame.setOrigin(frame.originX + offset.x, frame.originY + offset.y);
+    
+    this.frameChange.emit(updatedFrame);
   }
 }
