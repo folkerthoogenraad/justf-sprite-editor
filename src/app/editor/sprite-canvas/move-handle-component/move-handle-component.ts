@@ -1,15 +1,17 @@
-import { Component, computed, inject, input, output, signal, VERSION } from '@angular/core';
+import { Component, computed, ElementRef, inject, input, output, signal, VERSION, viewChild } from '@angular/core';
 import { Vector2 } from '../../../../ts/utils/Vector2';
 import { ViewportService } from '../../viewport-service';
 import { Point } from '../../../../ts/utils/Point';
+import { Icon } from "../../../components/icon/icon";
 
 @Component({
   selector: 'app-move-handle-component',
-  imports: [],
+  imports: [Icon],
   templateUrl: './move-handle-component.html',
   styleUrl: './move-handle-component.scss',
 })
 export class MoveHandleComponent {
+  root = viewChild<ElementRef<HTMLElement>>("root");
   viewport = inject(ViewportService);
 
   dragPointerId = -1;
@@ -29,7 +31,12 @@ export class MoveHandleComponent {
   onPointerDown(evt: PointerEvent) {
     if(this.dragPointerId > 0) return;
 
+    const root = this.root()?.nativeElement;
+
+    if(!root) return;
+
     evt.stopImmediatePropagation();
+    evt.preventDefault();
 
     this.dragPointerId = evt.pointerId;
 
@@ -37,13 +44,15 @@ export class MoveHandleComponent {
     
     this.updateEnd(evt);
 
-    (evt.target as HTMLElement).setPointerCapture(evt.pointerId);
+    root.setPointerCapture(evt.pointerId);
   }
 
   onPointerUp(evt: PointerEvent) {
     if(evt.pointerId !== this.dragPointerId) {
       return;
     }
+    
+    evt.preventDefault();
 
     this.updateEnd(evt);
     
@@ -60,6 +69,7 @@ export class MoveHandleComponent {
     if(evt.pointerId !== this.dragPointerId) {
       return;
     }
+    evt.preventDefault();
 
     this.updateEnd(evt);
   }

@@ -1,0 +1,29 @@
+img {
+    width: 24px;
+    height: 24px;
+
+    image-rendering: pixelated;
+
+    &.x16 {
+        width: 16px;
+        height: 16px;
+    }
+
+    &.x14 {
+        width: 14px;
+        height: 14px;
+    }
+
+    &.x12 {
+        width: 12px;
+        height: 12px;
+    }
+
+    &.x10 {
+        width: 10px;
+        height: 10px;
+    }
+
+    pointer-events: none;
+    user-select: none;
+}

@@ -1,0 +1,21 @@
+<div 
+    class="sprite" 
+    [class.selected]="state.isSelected(sprite())"
+    (click)="state.select(sprite())"
+    (dblclick)="onDoubleClick()">
+    
+    <!-- <c-icon icon="icon-sprite-7x7" x14></c-icon> -->
+    
+    <div class="text">
+        {{ sprite().id }}
+    </div>
+    
+    <div class="actions">
+        <c-button title="Duplicate sprite" (click)="duplicate()">
+            <c-icon icon="icon-duplicate-7x7" x14 />
+        </c-button>
+        <c-button title="Delete sprite" (click)="state.removeSprite(sprite())">
+            <c-icon icon="icon-delete-7x7" x14 />
+        </c-button>
+    </div>
+</div>

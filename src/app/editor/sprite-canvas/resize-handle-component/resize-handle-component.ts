@@ -1,12 +1,13 @@
 import { Component, inject, input, output } from '@angular/core';
 import { ViewportService } from '../../viewport-service';
 import { Point } from '../../../../ts/utils/Point';
+import { Icon } from "../../../components/icon/icon";
 
 type Direction = "n" | "e" | "s" | "w" | "ne" | "nw" | "se" | "sw" | "none";
 
 @Component({
   selector: 'app-resize-handle-component',
-  imports: [],
+  imports: [Icon],
   templateUrl: './resize-handle-component.html',
   styleUrl: './resize-handle-component.scss',
 })
@@ -45,6 +46,7 @@ export class SpriteViewResizeHandle {
     if(this.draggingPointerId > 0) return;
 
     evt.stopImmediatePropagation();
+    evt.preventDefault();
 
     this.draggingPointerId = evt.pointerId;
 
@@ -68,6 +70,7 @@ export class SpriteViewResizeHandle {
     this.draggingPointerId = -1;
 
     evt.stopImmediatePropagation();
+    evt.preventDefault();
   }
 
   onPointerMove(evt: PointerEvent) {
@@ -78,6 +81,9 @@ export class SpriteViewResizeHandle {
     this.handlePreviewMoved.emit(new Point(this.dragOffsetX, this.dragOffsetY));
 
     this.updateEnd(evt);
+
+    evt.stopImmediatePropagation();
+    evt.preventDefault();
   }
 
   updateEnd(evt: PointerEvent) {

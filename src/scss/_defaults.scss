@@ -6,6 +6,9 @@
 @mixin border-bottom {
     border-bottom: var(--border-width) solid var(--border-color);
 }
+@mixin border-right {
+    border-right: var(--border-width) solid var(--border-color);
+}
 
 
 @mixin overlay {
@@ -37,8 +40,8 @@
         background-color: var(--color-gray-200);
     }
     &.selected {
-        color: var(--color-text-on-blue);
-        background-color: var(--color-blue);
+        color: var(--color-text-on-light-blue);
+        background-color: var(--color-light-blue);
     }
     &.selected:active {
         color: var(--color-text-on-dark-blue);

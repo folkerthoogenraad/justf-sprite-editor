@@ -1,23 +1,32 @@
 <div class="sidebar-panel">
     <div class="heading">
+        <c-icon icon="icon-sprite" />
         <div class="title">Sprites explorer ({{sprites().length }})</div>
         <div class="actions">
-            <c-button (click)="duplicateSelected()" title="Duplicate selected sprite">DUP</c-button>
-            <c-button (click)="deleteSelected()" title="Delete selected sprite">DEL</c-button>
+            <c-toggle-button [(enabled)]="showAll" title="Show all">
+                @if(showAll()){
+                    <c-icon icon="icon-show-textures-open"></c-icon>
+                }
+                @else {
+                    <c-icon icon="icon-show-textures-closed"></c-icon>
+                }
+            </c-toggle-button>
         </div>
     </div>
     @if(!state.resources()) {
         <div class="content">
-            <p>Nothing to show.</p>
+            Nothing to show.
+        </div>
+    }
+    @if(sprites().length === 0) {
+        <div class="content">
+            No sprites here, did you select a texture?
         </div>
     }
     @else {
-        <div class="content sprites">
+        <div class="sprites">
             @for (sprite of sprites(); track sprite.id) {
-                <div 
-                    class="sprite" 
-                    [class.selected]="state.isSelected(sprite)"
-                    (click)="state.select(sprite)">{{ sprite.id }}</div>
+                <app-sprite-explorer-item [sprite]="sprite" />
             }
         </div>
     }

@@ -1,3 +1,4 @@
+import { Bounds } from "./utils/Bounds";
 import { ReadOnlyArray } from "./utils/ReadOnlyArray";
 
 export interface SpriteData {
@@ -7,6 +8,8 @@ export interface SpriteData {
 }
 
 export class Sprite {
+    private bounds: Bounds | undefined = undefined;
+
     constructor(
         public readonly id: string,
         public readonly texture: string,
@@ -43,6 +46,20 @@ export class Sprite {
             texture: this.texture,
             frames: this.frames?.map(x => x.serialize()),
         };
+    }
+
+    getBounds(): Bounds {
+        if(this.bounds) return this.bounds;
+
+        const left = this.frames.reduce((minimum, frame) => Math.min(minimum, frame.x), Infinity);
+        const right = this.frames.reduce((maximum, frame) => Math.max(maximum, frame.x + frame.width), -Infinity);
+
+        const top = this.frames.reduce((minimum, frame) => Math.min(minimum, frame.y), Infinity);
+        const bottom = this.frames.reduce((maximum, frame) => Math.max(maximum, frame.y + frame.height), -Infinity);
+
+        this.bounds = new Bounds(left, right, top, bottom);
+
+        return this.bounds;
     }
 
     static deserialize(data: SpriteData) {

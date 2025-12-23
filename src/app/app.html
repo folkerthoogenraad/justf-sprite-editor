@@ -16,11 +16,6 @@
     <app-texture-component></app-texture-component>
 
     @for (sprite of state.spritesForTexture(); track sprite.id) {
-      <!-- <app-sprite-frame-outline-component
-        [sprite]="sprite"
-        [selected]="state.isSelected(sprite)"
-        (spriteChange)="state.updateSprite(sprite, $event)"
-        (select)="state.select(sprite)" /> -->
         <app-sprite-outline-component 
           [sprite]="sprite"
           [selected]="state.isSelected(sprite)"

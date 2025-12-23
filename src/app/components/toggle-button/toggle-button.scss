@@ -1,6 +1,6 @@
-@use "defaults" as defaults;
+@use "defaults";
 
-.button {
+.button-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -16,4 +16,11 @@
     background-color: white;
     &:hover { background-color: #eee; }
     &:active { background-color: #ddd; }
+
+    &.enabled {
+        background-color: var(--color-light-blue);
+        
+        &:hover { background-color: var(--color-blue); }
+        &:active { background-color: var(--color-dark-blue) }
+    }
 }

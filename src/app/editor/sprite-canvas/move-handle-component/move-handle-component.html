@@ -1,12 +1,13 @@
 <div class="handle-root" 
+    #root
     (pointerdown)="onPointerDown($event)" 
     (pointermove)="onPointerMove($event)" 
     (pointerup)="onPointerUp($event)"
     [style.left.px]="styleLeft()"
     [style.top.px]="styleTop()">
 
-    <div class="handle-display"></div>
-
+    <c-icon class="handle-icon" x10 icon="handle-origin" />
+    
     @if(this.dragPointerId > 0) {
         <span class="preview">{{ (this.offset()?.x ?? 0) + this.x() }}x{{(this.offset()?.y ?? 0) + this.y()}} </span>
     }

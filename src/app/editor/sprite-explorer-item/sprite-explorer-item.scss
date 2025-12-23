@@ -1,0 +1,23 @@
+.sprite {
+    cursor: default;
+    
+    user-select: none;
+    padding: 2px 8px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    &.selected {
+        background-color: var(--color-light-blue);
+    }
+
+    .actions {
+        flex-grow:1;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}

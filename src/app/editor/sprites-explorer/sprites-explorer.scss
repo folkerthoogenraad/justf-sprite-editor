@@ -14,3 +14,9 @@
         @include defaults.selectable-list-item;
     }
 }
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

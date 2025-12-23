@@ -89,8 +89,10 @@ export class SpriteCanvas implements AfterViewInit {
       this.newSpritePointerId = -1;
 
       const texture = this.state.texture()?.fileName;
+      const resources = this.state.resources();
 
       if(!texture) return;
+      if(!resources) return;
 
       let startX = Math.round(this.newSpriteStart.x);
       let startY = Math.round(this.newSpriteStart.y);
@@ -107,7 +109,7 @@ export class SpriteCanvas implements AfterViewInit {
 
       let frame = new SpriteFrame(startX, startY, width, height, 0, 0);
 
-      let sprite = new Sprite("sprite.0", texture, [frame]);
+      let sprite = new Sprite(resources.getFirstAvailableId("sprite.0"), texture, [frame]);
 
       this.state.addSprite(sprite);
     }

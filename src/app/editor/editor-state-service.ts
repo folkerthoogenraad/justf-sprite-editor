@@ -3,6 +3,14 @@ import { Resources } from '../../ts/Resources';
 import { Sprite } from '../../ts/Sprite';
 import { ProjectFolderService } from './project-folder-service';
 
+export enum EditorTool {
+  Select,
+  CreateSprite,
+  CreateFrame,
+  
+  Pan, // View?
+}
+
 interface TextureState {
   fileName: string;
   file: File;
@@ -18,6 +26,8 @@ export class EditorStateService {
 
   loading = signal(false);
   texture = signal<TextureState | undefined>(undefined);
+
+  tool = signal(EditorTool.Select);
 
   resources = signal<Resources | undefined>(undefined);
   
@@ -89,6 +99,9 @@ export class EditorStateService {
   // ================================================= //
   addSprite(sprite: Sprite) {
     this.resources.update(r => r?.addSprite(sprite));
+  }
+  removeSprite(sprite: Sprite) {
+    this.resources.update(r => r?.removeSprite(sprite));
   }
   updateSprite(old: Sprite | undefined, current: Sprite | undefined) {
     if(!old) return;

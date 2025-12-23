@@ -1,10 +1,13 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { EditorStateService } from '../editor-state-service';
 import { Button } from "../../components/button/button";
+import { Icon } from "../../components/icon/icon";
+import { ToggleButton } from "../../components/toggle-button/toggle-button";
+import { SpriteExplorerItem } from "../sprite-explorer-item/sprite-explorer-item";
 
 @Component({
   selector: 'app-sprites-explorer',
-  imports: [Button],
+  imports: [Button, Icon, ToggleButton, SpriteExplorerItem],
   templateUrl: './sprites-explorer.html',
   styleUrl: './sprites-explorer.scss',
 })
@@ -29,22 +32,4 @@ export class SpritesExplorer {
 
     return sprites;
   });
-
-  duplicateSelected() {
-    const selected = this.state.selectedSprite();
-
-    if(!selected) return;
-
-    const sprite = selected.setId(`${selected.id} (copy)`);
-
-    this.state.addSprite(sprite);
-  }
-
-  deleteSelected() {
-    const sprite = this.state.selectedSprite();
-
-    if(!sprite) return;
-
-    this.state.resources.update(r => r?.removeSprite(sprite));
-  }
 }

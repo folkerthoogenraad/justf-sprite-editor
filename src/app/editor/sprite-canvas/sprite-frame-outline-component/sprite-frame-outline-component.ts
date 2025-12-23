@@ -6,6 +6,7 @@ import { Point } from '../../../../ts/utils/Point';
 import { ChangableText } from "../../../components/changable-text/changable-text";
 import { MoveHandleComponent } from "../move-handle-component/move-handle-component";
 import { PointComponent } from "../point-component/point-component";
+import { Icon } from "../../../components/icon/icon";
 
 interface Outline {
   top: number;
@@ -16,7 +17,7 @@ interface Outline {
 
 @Component({
   selector: 'app-sprite-frame-outline-component',
-  imports: [SpriteViewResizeHandle, MoveHandleComponent, PointComponent],
+  imports: [SpriteViewResizeHandle, MoveHandleComponent, PointComponent, Icon],
   templateUrl: './sprite-frame-outline-component.html',
   styleUrl: './sprite-frame-outline-component.scss',
 })

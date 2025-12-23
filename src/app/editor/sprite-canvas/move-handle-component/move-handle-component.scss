@@ -2,17 +2,15 @@
 
 .handle-root {
     position: absolute;
+    display: flex;
 
-    .handle-display {
-        width: var(--handle-size);
-        height: var(--handle-size);
-    
-        border: 2px solid var(--color-green);
-        background-color: white;
-    
-        transform: translate(-50%, -50%) rotate(45deg);
+    .handle-icon {
+        position: absolute;
+        display: inline-flex;
+        transform: translate(-50%, -50%);
         
         cursor: crosshair;
+
     }
     .preview {
         @include defaults.readable-text;

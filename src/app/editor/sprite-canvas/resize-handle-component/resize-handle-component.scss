@@ -1,12 +1,12 @@
 @use "defaults" as defaults;
 
 .handle {
-    width: var(--handle-size);
-    height: var(--handle-size);
+    // width: var(--handle-size);
+    // height: var(--handle-size);
 
-    border: 2px solid var(--color-blue);
-    background-color: white;
-    border-radius: var(--handle-radius);
+    // border: 2px solid var(--color-blue);
+    // background-color: white;
+    // border-radius: var(--handle-radius);
 
     position: relative;
     

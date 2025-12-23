@@ -4,9 +4,12 @@
 
 <div class="sidebar-panel">
     <div class="heading">
+        <c-icon icon="icon-texture" />
         <div class="title">Texture explorer</div>
         <div class="actions">
-            <c-button (click)="folder.reloadTextureList()" title="Refresh">R</c-button>
+            <c-button (click)="folder.reloadTextureList()" title="Refresh">
+                <c-icon icon="icon-reload"></c-icon>
+            </c-button>
         </div>
     </div>
     @if(folder.loading()) {
@@ -17,7 +20,10 @@
     @else if(!folder.folder()) {
         <div class="content no-folder">
             <p>No folder has been selected.</p>
-            <c-button (click)="folder.openFolder()">Select folder</c-button>
+            <c-button (click)="folder.openFolder()">
+                <c-icon icon="open"></c-icon>
+                Select folder
+            </c-button>
         </div>
     }
     @else {
