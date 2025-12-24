@@ -4,10 +4,11 @@ import { Button } from "../../components/button/button";
 import { ReadOnlyArray } from '../../../ts/utils/ReadOnlyArray';
 import { SpritePreviewComponent } from "../sprite-frame-preview-component/sprite-frame-preview-component";
 import { Icon } from "../../components/icon/icon";
+import { SpriteDetailsFrame } from "../sprite-details-frame/sprite-details-frame";
 
 @Component({
   selector: 'app-sprite-details',
-  imports: [Button, SpritePreviewComponent, Icon],
+  imports: [Button, SpritePreviewComponent, Icon, SpriteDetailsFrame],
   templateUrl: './sprite-details.html',
   styleUrl: './sprite-details.scss',
 })
@@ -43,12 +44,12 @@ export class SpriteDetails {
     this.spriteChange.emit(updated);
   }
   
-  removeLastFrame() {
+  removeFrame(index: number) {
     const sprite = this.sprite();
 
     if(!sprite) return;
 
-    const updated = sprite.setFrames(ReadOnlyArray.removeAt(sprite.frames, sprite.frames.length - 1));
+    const updated = sprite.setFrames(ReadOnlyArray.removeAt(sprite.frames, index));
 
     this.spriteChange.emit(updated);
   }

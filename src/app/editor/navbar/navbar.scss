@@ -11,6 +11,8 @@ nav {
         
         padding: 4px 12px;
 
+        gap: 10px;
+
         &:not(:last-child) {
             @include defaults.border-right;
         }

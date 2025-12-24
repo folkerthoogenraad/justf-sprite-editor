@@ -21,22 +21,24 @@
             <c-icon icon="icon-chevron-right"></c-icon>
         </c-button>
     </div>
+
     <p>{{ sprite()?.id }}</p>
     <p>{{ sprite()?.texture }}</p>
-    <p>{{ animationFrameIndex() }}</p>
 
-    <c-button (click)="addFrame()">Add frame</c-button>
-    <c-button (click)="removeLastFrame()">Remove last frame</c-button>
+    <h4>Frames</h4>
 
     <div class="sprite-frames">
         @for (frame of sprite()?.frames; track $index) {
-            <div class="frame">
-                <app-sprite-frame-preview-component class="frame-preview" [sprite]="sprite()!" [frameIndex]="$index" />
-            </div>
+            <app-sprite-details-frame class="frame" 
+                [sprite]="sprite()!" 
+                [frameIndex]="$index"
+                [canDelete]="sprite()!.frames.length > 1"
+                (delete)="removeFrame($index)"
+                />
         }
-        
-        <div class="frame add-frame">
-            <c-icon icon="icon-plus"></c-icon>
-        </div>
+
+        <c-button class="frame add-frame"  (click)="addFrame()">
+            <c-icon icon="icon-add-frame"></c-icon>
+        </c-button>
     </div>
 }

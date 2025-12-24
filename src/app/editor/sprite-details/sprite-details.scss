@@ -19,8 +19,6 @@
         max-height: 100%;
         width: 100%;
     }
-
-    
 }
 
 .sprite-frames {
@@ -31,19 +29,14 @@
     gap: 2px;
 
     .frame {
+        // border: 1px solid red;
+
+        aspect-ratio: 1 / 1;
+    }
+    
+    .add-frame {
         display: flex;
         justify-content: center;
         align-items: center;
-
-        border: 1px solid red;
-        padding: 4px;
-
-        aspect-ratio: 1 / 1;
-
-        position: relative;
-        
-        .frame-preview {
-            @include defaults.overlay;
-        }
     }
 }

@@ -1,0 +1,16 @@
+<div class="frame">
+    <div class="frame-content background" [class.selected]="selection.isFrameSelected(sprite(), frameIndex())" (click)="onBackgroundClicked($event)">
+        
+    </div>
+    <div class="frame-content sprite">
+        <div class="container">
+            <app-sprite-frame-preview-component class="frame-preview" [sprite]="sprite()!" [frameIndex]="frameIndex()" />
+        </div>
+    </div>
+
+    @if(canDelete()){
+        <c-button (click)="delete.emit()">
+            <c-icon icon="icon-delete"></c-icon>
+        </c-button>
+    }
+</div>
