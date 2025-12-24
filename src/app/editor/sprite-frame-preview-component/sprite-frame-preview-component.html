@@ -1,0 +1,16 @@
+<div class="preview-container"
+    #container
+    [style.--preview-texture-url]="textureUrl()"
+    [style.--preview-x]="frame().x"
+    [style.--preview-y]="frame().y"
+    [style.--preview-width]="frame().width"
+    [style.--preview-height]="frame().height"
+    [style.--preview-origin-x]="frame().originX"
+    [style.--preview-origin-y]="frame().originY"
+    [style.--preview-texture-width]="textureWidth()"
+    [style.--preview-texture-height]="textureHeight()"
+    [style.--preview-rotation]="rotation()"
+    [style.--aspect-ratio]="aspectRatio()"
+    >
+    <div class="preview"></div>
+</div>

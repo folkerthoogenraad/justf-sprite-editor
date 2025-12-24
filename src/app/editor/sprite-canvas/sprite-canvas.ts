@@ -109,7 +109,7 @@ export class SpriteCanvas implements AfterViewInit {
 
       let frame = new SpriteFrame(startX, startY, width, height, 0, 0);
 
-      let sprite = new Sprite(resources.getFirstAvailableId("sprite.0"), texture, [frame]);
+      let sprite = new Sprite(resources.getFirstAvailableId("sprite.0"), texture, 8, [frame]);
 
       this.state.addSprite(sprite);
     }

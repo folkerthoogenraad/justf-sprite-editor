@@ -4,6 +4,7 @@ import { ReadOnlyArray } from "./utils/ReadOnlyArray";
 export interface SpriteData {
     id?: string;
     texture?: string;
+    frameRate?: number;
     frames?: SpriteFrameData[];
 }
 
@@ -13,15 +14,16 @@ export class Sprite {
     constructor(
         public readonly id: string,
         public readonly texture: string,
+        public readonly frameRate: number,
         public readonly frames: SpriteFrame[]
     ) { }
 
     setId(id: string) {
-        return new Sprite(id, this.texture, this.frames);
+        return new Sprite(id, this.texture, this.frameRate, this.frames);
     }
 
     setTextureId(textureId: string) {
-        return new Sprite(this.id, textureId, this.frames);
+        return new Sprite(this.id, textureId, this.frameRate, this.frames);
     }
 
     addFrame(frame: SpriteFrame) {
@@ -37,13 +39,14 @@ export class Sprite {
     }
 
     setFrames(frames: SpriteFrame[]) {
-        return new Sprite(this.id, this.texture, frames);
+        return new Sprite(this.id, this.texture, this.frameRate, frames);
     }
 
     serialize(): SpriteData {
         return {
             id: this.id,
             texture: this.texture,
+            frameRate: this.frameRate,
             frames: this.frames?.map(x => x.serialize()),
         };
     }
@@ -66,6 +69,7 @@ export class Sprite {
         return new Sprite(
             data.id ?? "missing", 
             data.texture ?? "missing", 
+            data.frameRate ?? 8,
             data.frames?.map(x => SpriteFrame.deserialize(x)) ?? []);
     }
 }

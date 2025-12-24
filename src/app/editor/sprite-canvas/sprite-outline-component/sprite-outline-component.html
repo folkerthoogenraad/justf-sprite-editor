@@ -3,9 +3,9 @@
     [style.top.px]="styleTop()"
     [style.width.px]="styleWidth()"
     [style.height.px]="styleHeight()"
-    [class.selected]="selected()">
+    [class.selected]="selection.isSelected(sprite())">
 
-    @if(selected()){
+    @if(selection.isSelected(sprite())){
         <div class="sprite-id">
             <c-changable-text [value]="sprite().id" (valueChange)="updateSpriteName($event)"></c-changable-text>
         </div>
@@ -14,9 +14,8 @@
 
 @for (frame of sprite().frames; track $index) {
     <app-sprite-frame-outline-component
-        [frame]="frame"
+        [sprite]="sprite()"
+        [frameIndex]="$index"
         (frameChange)="updateFrame(frame, $event)"
-        (select)="select.emit(); selectedFrame.set($index)"
-        [selected]="selected() && $index == selectedFrame()"
         ></app-sprite-frame-outline-component>
 }

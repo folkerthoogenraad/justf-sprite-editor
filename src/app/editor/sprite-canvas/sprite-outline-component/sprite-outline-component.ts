@@ -4,6 +4,7 @@ import { ViewportService } from '../../viewport-service';
 import { SpriteFrameOutlineComponent } from "../sprite-frame-outline-component/sprite-frame-outline-component";
 import { ChangableText } from "../../../components/changable-text/changable-text";
 import { EditorStateService } from '../../editor-state-service';
+import { EditorSelectionService } from '../../editor-selection-service';
 
 @Component({
   selector: 'app-sprite-outline-component',
@@ -16,15 +17,11 @@ export class SpriteOutlineComponent {
   // we need to know whether this is a valid sprite name, so for 
   // now we use this only for checking the names.
   state = inject(EditorStateService);
+  selection = inject(EditorSelectionService);
   viewport = inject(ViewportService);
 
   sprite = input.required<Sprite>();
   spriteChange = output<Sprite>();
-
-  selected = input(false);
-  select = output();
-
-  selectedFrame = signal(0);
 
   outline = computed(() => {
     const sprite = this.sprite();

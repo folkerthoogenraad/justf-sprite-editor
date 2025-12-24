@@ -10,6 +10,7 @@ import { SpritesExplorer } from "./editor/sprites-explorer/sprites-explorer";
 import { SpriteDetails } from "./editor/sprite-details/sprite-details";
 import { SpriteOutlineComponent } from "./editor/sprite-canvas/sprite-outline-component/sprite-outline-component";
 import { SelectComponent } from "./editor/sprite-canvas/select-component/select-component";
+import { EditorSelectionService } from './editor/editor-selection-service';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class App {
 
   viewport = inject(ViewportService);
   state = inject(EditorStateService);
+  selection = inject(EditorSelectionService);
 
   constructor() {
     effect(() => {

@@ -30,6 +30,7 @@ export class EditorStateService {
   tool = signal(EditorTool.Select);
 
   resources = signal<Resources | undefined>(undefined);
+
   
   spritesForTexture = computed(() => {
     const texture = this.texture();
@@ -41,22 +42,6 @@ export class EditorStateService {
     return resources.sprites.filter(x => x.texture === texture.fileName);
   });
 
-  selectedSprite = computed(() => {
-    const ids = this.selectedSpriteIds();
-    const resources = this.resources();
-
-    if(!ids || !resources) return;
-
-    if(ids.size === 0) return;
-    if(ids.size > 1) return;
-
-    let id = ids.keys().next().value!;
-    
-    return resources.getSpriteById(id);
-  });
-
-  selectedSpriteIds = signal<Set<string>>(new Set<string>());
-
   constructor() {
     effect(() => {
       this.project.folder();
@@ -65,37 +50,19 @@ export class EditorStateService {
         this.reloadResources();
       });
     });
-    effect(() => {
-      this.texture();
+    // effect(() => {
+    //   this.texture();
 
-      untracked(() => {
-        // TODO only clear selection if the new texture
-        // is not the one for the sprite.
-        this.selectedSpriteIds.set(new Set<string>());
-      });
-    });
+    //   untracked(() => {
+    //     // TODO only clear selection if the new texture
+    //     // is not the one for the sprite.
+    //     this.selectedSpriteIds.set(new Map<string, Set<number>>());
+    //   });
+    // });
   }
 
   // ================================================= //
-  // Selection
-  // ================================================= //
-  isSelected(sprite: Sprite) {
-    return this.selectedSpriteIds().has(sprite.id);
-  }
-  
-  select(sprite: Sprite) {
-    let ids = new Set<string>([sprite.id]);
-
-    this.selectedSpriteIds.set(ids);
-    this.selectTexture(sprite.texture);
-  }
-
-  deselectAll() {
-    this.selectedSpriteIds.set(new Set<string>());
-  }
-
-  // ================================================= //
-  // Editing
+  // Editing (moved to another service, probably?)
   // ================================================= //
   addSprite(sprite: Sprite) {
     this.resources.update(r => r?.addSprite(sprite));
@@ -107,13 +74,7 @@ export class EditorStateService {
     if(!old) return;
     if(!current) return;
 
-    let selected = this.isSelected(old);
-
     this.resources.update(r => r?.updateSprite(old, current));
-
-    if(selected) {
-      this.select(current);
-    }
   }
   
   // ================================================= //

@@ -8,7 +8,7 @@
   </app-sidebar>
   
   <app-sidebar class="right">
-    <app-sprite-details [sprite]="state.selectedSprite()" (spriteChange)="state.updateSprite(state.selectedSprite(), $event)" />
+    <app-sprite-details [sprite]="selection.selectedSprite()" (spriteChange)="state.updateSprite(selection.selectedSprite(), $event)" />
   </app-sidebar>
 
   <app-sprite-canvas>
@@ -18,9 +18,7 @@
     @for (sprite of state.spritesForTexture(); track sprite.id) {
         <app-sprite-outline-component 
           [sprite]="sprite"
-          [selected]="state.isSelected(sprite)"
           (spriteChange)="state.updateSprite(sprite, $event)"
-          (select)="state.select(sprite)"
           ></app-sprite-outline-component>
     }
   </app-sprite-canvas>

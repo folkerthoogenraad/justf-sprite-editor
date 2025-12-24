@@ -7,6 +7,7 @@ import { ChangableText } from "../../../components/changable-text/changable-text
 import { MoveHandleComponent } from "../move-handle-component/move-handle-component";
 import { PointComponent } from "../point-component/point-component";
 import { Icon } from "../../../components/icon/icon";
+import { EditorSelectionService } from '../../editor-selection-service';
 
 interface Outline {
   top: number;
@@ -24,13 +25,14 @@ interface Outline {
 export class SpriteFrameOutlineComponent {
   outlineElement = viewChild<ElementRef<HTMLElement>>("outlineElement");
 
+  selection = inject(EditorSelectionService);
   viewport = inject(ViewportService);
 
-  selected = input(false);
-  
-  select = output();
+  sprite = input.required<Sprite>();
+  frameIndex = input.required<number>();
 
-  frame = input.required<SpriteFrame>();
+  frame = computed(() => this.sprite().frames[this.frameIndex()]);
+
   frameChange = output<SpriteFrame>();
 
   outlineFrame = signal<Outline>({ top: 0, left: 0, bottom: 0, right: 0 });
@@ -88,7 +90,7 @@ export class SpriteFrameOutlineComponent {
 
     this.dragPointerId = evt.pointerId;
 
-    this.select.emit();
+    this.selection.selectFrame(this.sprite(), this.frameIndex(), evt.ctrlKey);
 
     evt.stopImmediatePropagation(); // Prevent others from handling this event.
     evt.preventDefault(); // Prevent weird text selection like things.
@@ -233,15 +235,13 @@ export class SpriteFrameOutlineComponent {
     const updatedFrame = frame.setPosition(x, y).setSize(width, height);
 
     this.frameChange.emit(updatedFrame);
-  }  
+  }
 
   updateOrigin(offset: Point) {
     const sprite = this.frame();
     const frame = this.frame();
 
     if(!sprite || !frame) return;
-
-    console.dir(offset);
     
     const updatedFrame = frame.setOrigin(frame.originX + offset.x, frame.originY + offset.y);
     

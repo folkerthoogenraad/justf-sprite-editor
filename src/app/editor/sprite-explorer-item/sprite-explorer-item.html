@@ -1,8 +1,8 @@
 <div 
     class="sprite" 
-    [class.selected]="state.isSelected(sprite())"
-    (click)="state.select(sprite())"
-    (dblclick)="onDoubleClick()">
+    [class.selected]="selection .isSelected(sprite())"
+    (click)="onClick($event)"
+    (dblclick)="onDoubleClick($event)">
     
     <!-- <c-icon icon="icon-sprite-7x7" x14></c-icon> -->
     

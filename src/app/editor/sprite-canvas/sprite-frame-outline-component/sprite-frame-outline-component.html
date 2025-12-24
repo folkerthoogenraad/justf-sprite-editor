@@ -5,12 +5,12 @@
         [style.top.px]="styleTop()"
         [style.width.px]="styleWidth()" 
         [style.height.px]="styleHeight()"
-        [class.selected]="selected()"
+        [class.selected]="selection.isFrameSelected(sprite(), frameIndex())"
         (pointerdown)="onPointerDown($event)"
         (pointerup)="onPointerUp($event)"
         (pointermove)="onPointerMove($event)">
         
-        @if(selected()){
+        @if(selection.isFrameSelected(sprite(), frameIndex())){
             <div class="sprite-size">{{ (outline().bottom - outline().top) }}x{{ (outline().right - outline().left) }}</div>
 
             <app-resize-handle-component (handlePreviewMoved)="updatePreviewTopLeft($event)" (handleMoved)="updateTopLeft($event)" class="handle top-left" direction="nw"></app-resize-handle-component>

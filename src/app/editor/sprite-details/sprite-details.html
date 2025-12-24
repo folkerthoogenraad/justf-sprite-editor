@@ -3,9 +3,40 @@
 }
 
 @else {
+    <div class="sprite-preview">
+        <app-sprite-frame-preview-component class="sprite-preview-component" [sprite]="sprite()!" [frameIndex]="animationFrameIndex()" />
+    </div>
+    <div class="controls">
+        <c-button (click)="playAnimation()">
+            <c-icon icon="icon-play"></c-icon>
+        </c-button>
+        <c-button (click)="stopAnimation()">
+            <c-icon icon="icon-stop"></c-icon>
+        </c-button>
+
+        <c-button (click)="nextFrame()">
+            <c-icon icon="icon-chevron-left"></c-icon>
+        </c-button>
+        <c-button (click)="previousFrame()">
+            <c-icon icon="icon-chevron-right"></c-icon>
+        </c-button>
+    </div>
     <p>{{ sprite()?.id }}</p>
     <p>{{ sprite()?.texture }}</p>
+    <p>{{ animationFrameIndex() }}</p>
 
     <c-button (click)="addFrame()">Add frame</c-button>
     <c-button (click)="removeLastFrame()">Remove last frame</c-button>
+
+    <div class="sprite-frames">
+        @for (frame of sprite()?.frames; track $index) {
+            <div class="frame">
+                <app-sprite-frame-preview-component class="frame-preview" [sprite]="sprite()!" [frameIndex]="$index" />
+            </div>
+        }
+        
+        <div class="frame add-frame">
+            <c-icon icon="icon-plus"></c-icon>
+        </div>
+    </div>
 }

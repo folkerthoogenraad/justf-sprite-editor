@@ -1,0 +1,49 @@
+@use "defaults";
+
+.sprite-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    aspect-ratio: 1;
+
+    background: var(--color-gray-100);
+
+    padding: 8px;
+
+    .sprite-preview-component {
+        display: flex;
+        justify-content: center;
+
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+    }
+
+    
+}
+
+.sprite-frames {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 8px;
+
+    gap: 2px;
+
+    .frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border: 1px solid red;
+        padding: 4px;
+
+        aspect-ratio: 1 / 1;
+
+        position: relative;
+        
+        .frame-preview {
+            @include defaults.overlay;
+        }
+    }
+}

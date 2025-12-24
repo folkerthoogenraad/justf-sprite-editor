@@ -1,22 +1,22 @@
 <nav>
     <div class="buttons global-buttons">
         <c-button (click)="folder.openFolder()">
-            <c-icon icon="icon-open" />
+            <c-icon icon="icon-open" /> open
         </c-button>
         <c-button (click)="state.saveResources()">
-            <c-icon icon="icon-save" />
+            <c-icon icon="icon-save" /> save
         </c-button>
     </div>
 
     <div class="buttons context-buttons">
         <c-toggle-button [enabled]="isSelectTool()" (click)="setSelectTool()">
-            <c-icon icon="icon-edit" />
+            <c-icon icon="icon-edit" /> select
         </c-toggle-button>
         <c-toggle-button [enabled]="isSpriteTool()" (click)="setSpriteTool()">
-            <c-icon icon="icon-sprite" />
+            <c-icon icon="icon-sprite" /> sprites
         </c-toggle-button>
         <c-toggle-button [enabled]="isFrameTool()" (click)="setFrameTool()">
-            <c-icon icon="icon-frame" />
+            <c-icon icon="icon-frame" /> frames
         </c-toggle-button>
     </div>
 </nav>
