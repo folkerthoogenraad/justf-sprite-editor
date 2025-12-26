@@ -1,3 +1,4 @@
+import { SpriteProperties, SpriteProperty, SpritePropertyData } from "./SpriteProperties";
 import { Bounds } from "./utils/Bounds";
 import { ReadOnlyArray } from "./utils/ReadOnlyArray";
 
@@ -6,6 +7,7 @@ export interface SpriteData {
     texture?: string;
     frameRate?: number;
     frames?: SpriteFrameData[];
+    properties?: SpritePropertyData[];
 }
 
 export class Sprite {
@@ -15,39 +17,65 @@ export class Sprite {
         public readonly id: string,
         public readonly texture: string,
         public readonly frameRate: number,
-        public readonly frames: SpriteFrame[]
+        public readonly frames: SpriteFrame[],
+        public readonly properties: SpriteProperties,
     ) { }
 
     setId(id: string) {
-        return new Sprite(id, this.texture, this.frameRate, this.frames);
+        return new Sprite(id, this.texture, this.frameRate, this.frames, this.properties);
     }
 
     setTextureId(textureId: string) {
-        return new Sprite(this.id, textureId, this.frameRate, this.frames);
+        return new Sprite(this.id, textureId, this.frameRate, this.frames, this.properties);
     }
 
+    // =================================================================== //
+    // Frames
+    // =================================================================== //
     addFrame(frame: SpriteFrame) {
         return this.setFrames(ReadOnlyArray.add(this.frames, frame));
     }
-
     updateFrame(old: SpriteFrame, current: SpriteFrame) {
         return this.setFrames(ReadOnlyArray.replace(this.frames, old, current));
     }
-
     removeFrame(frame: SpriteFrame) {
         return this.setFrames(ReadOnlyArray.remove(this.frames, frame));
     }
-
     setFrames(frames: SpriteFrame[]) {
-        return new Sprite(this.id, this.texture, this.frameRate, frames);
+        return new Sprite(this.id, this.texture, this.frameRate, frames, this.properties);
     }
 
+    // =================================================================== //
+    // Properties (forwarding)
+    // =================================================================== //
+    getProperty(name: string): SpriteProperty | undefined {
+        return this.properties.getProperty(name);
+    }
+
+    addProperty(property: SpriteProperty) {
+        return this.setProperties(this.properties.addProperty(property));
+    }
+    updateProperty(previous: SpriteProperty, current: SpriteProperty) {
+        return this.setProperties(this.properties.updateProperty(previous, current));
+    }
+    removeProperty(property: SpriteProperty) {
+        return this.setProperties(this.properties.removeProperty(property));
+    }
+
+    setProperties(properties: SpriteProperties) {
+        return new Sprite(this.id, this.texture, this.frameRate, this.frames, properties);
+    }
+
+    // =================================================================== //
+    // Serialization
+    // =================================================================== //
     serialize(): SpriteData {
         return {
             id: this.id,
             texture: this.texture,
             frameRate: this.frameRate,
             frames: this.frames?.map(x => x.serialize()),
+            properties: this.properties.serialize(),
         };
     }
 
@@ -70,7 +98,9 @@ export class Sprite {
             data.id ?? "missing", 
             data.texture ?? "missing", 
             data.frameRate ?? 8,
-            data.frames?.map(x => SpriteFrame.deserialize(x)) ?? []);
+            data.frames?.map(x => SpriteFrame.deserialize(x)) ?? [],
+            SpriteProperties.deserialize(data.properties ?? [])
+        );
     }
 }
 
@@ -81,6 +111,7 @@ export interface SpriteFrameData {
     height?: number;
     originX?: number;
     originY?: number;
+    properties?: SpritePropertyData[];
 }
 
 export class SpriteFrame {
@@ -90,26 +121,55 @@ export class SpriteFrame {
     readonly height: number;
     readonly originX: number;
     readonly originY: number;
+    readonly properties: SpriteProperties;
 
-    constructor(x: number, y: number, width: number, height: number, originX: number, originY: number) {
+    constructor(x: number, y: number, width: number, height: number, originX: number, originY: number, properties: SpriteProperties) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.originX = originX;
         this.originY = originY;
+        this.properties = properties;
     }
 
+    // =================================================================== //
+    // Basics
+    // =================================================================== //
     setPosition(x: number, y: number) {
-        return new SpriteFrame(x, y, this.width, this.height, this.originX, this.originY);
+        return new SpriteFrame(x, y, this.width, this.height, this.originX, this.originY, this.properties);
     }
     setSize(width: number, height: number) {
-        return new SpriteFrame(this.x, this.y, width, height, this.originX, this.originY);
+        return new SpriteFrame(this.x, this.y, width, height, this.originX, this.originY, this.properties);
     }
     setOrigin(originX: number, originY: number) {
-        return new SpriteFrame(this.x, this.y, this.width, this.height, originX, originY);
+        return new SpriteFrame(this.x, this.y, this.width, this.height, originX, originY, this.properties);
     }
 
+    // =================================================================== //
+    // Properties (forwarding)
+    // =================================================================== //
+    getProperty(name: string): SpriteProperty | undefined {
+        return this.properties.getProperty(name);
+    }
+
+    addProperty(property: SpriteProperty) {
+        return this.setProperties(this.properties.addProperty(property));
+    }
+    updateProperty(previous: SpriteProperty, current: SpriteProperty) {
+        return this.setProperties(this.properties.updateProperty(previous, current));
+    }
+    removeProperty(property: SpriteProperty) {
+        return this.setProperties(this.properties.removeProperty(property));
+    }
+
+    setProperties(properties: SpriteProperties) {
+        return new SpriteFrame(this.x, this.y, this.width, this.height, this.originX, this.originY, properties);
+    }
+
+    // =================================================================== //
+    // Serialization
+    // =================================================================== //
     serialize(): SpriteFrameData {
         return {
             x: this.x,
@@ -118,6 +178,7 @@ export class SpriteFrame {
             height: this.height,
             originX: this.originX,
             originY: this.originY,
+            properties: this.properties.serialize(),
         };
     }
     static deserialize(data: SpriteFrameData) {
@@ -127,6 +188,8 @@ export class SpriteFrame {
             data.width ?? 0, 
             data.height ?? 0,
             data.originX ?? 0, 
-            data.originY ?? 0);
+            data.originY ?? 0,
+            SpriteProperties.deserialize(data.properties ?? [])
+        );
     }
 }

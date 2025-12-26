@@ -31,7 +31,6 @@ export class EditorStateService {
 
   resources = signal<Resources | undefined>(undefined);
 
-  
   spritesForTexture = computed(() => {
     const texture = this.texture();
     const resources = this.resources();

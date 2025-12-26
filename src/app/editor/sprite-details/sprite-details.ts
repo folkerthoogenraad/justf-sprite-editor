@@ -5,6 +5,7 @@ import { ReadOnlyArray } from '../../../ts/utils/ReadOnlyArray';
 import { SpritePreviewComponent } from "../sprite-frame-preview-component/sprite-frame-preview-component";
 import { Icon } from "../../components/icon/icon";
 import { SpriteDetailsFrame } from "../sprite-details-frame/sprite-details-frame";
+import { SpriteProperties } from '../../../ts/SpriteProperties';
 
 @Component({
   selector: 'app-sprite-details',
@@ -39,7 +40,7 @@ export class SpriteDetails {
       originY = lastFrame.originY;
     }
 
-    const updated = sprite.addFrame(new SpriteFrame(x, y, width, height, originX, originY));
+    const updated = sprite.addFrame(new SpriteFrame(x, y, width, height, originX, originY, new SpriteProperties([])));
 
     this.spriteChange.emit(updated);
   }

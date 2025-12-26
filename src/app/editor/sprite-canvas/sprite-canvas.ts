@@ -3,6 +3,7 @@ import { ViewportService } from '../viewport-service';
 import { Vector2 } from '../../../ts/utils/Vector2';
 import { Sprite, SpriteFrame } from '../../../ts/Sprite';
 import { EditorStateService } from '../editor-state-service';
+import { SpriteProperties } from '../../../ts/SpriteProperties';
 
 @Component({
   selector: 'app-sprite-canvas',
@@ -107,9 +108,9 @@ export class SpriteCanvas implements AfterViewInit {
         return;
       }
 
-      let frame = new SpriteFrame(startX, startY, width, height, 0, 0);
+      let frame = new SpriteFrame(startX, startY, width, height, 0, 0, new SpriteProperties([]));
 
-      let sprite = new Sprite(resources.getFirstAvailableId("sprite.0"), texture, 8, [frame]);
+      let sprite = new Sprite(resources.getFirstAvailableId("sprite.0"), texture, 8, [frame], new SpriteProperties([]));
 
       this.state.addSprite(sprite);
     }
