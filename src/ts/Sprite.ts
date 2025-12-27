@@ -29,6 +29,10 @@ export class Sprite {
         return new Sprite(this.id, textureId, this.frameRate, this.frames, this.properties);
     }
 
+    setFrameRate(rate: number) {
+        return new Sprite(this.id, this.texture, rate, this.frames, this.properties);
+    }
+
     // =================================================================== //
     // Frames
     // =================================================================== //

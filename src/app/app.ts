@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal, untracked } from '@angular/core';
+import { Component, effect, HostListener, inject, signal, untracked } from '@angular/core';
 import { Navbar } from "./editor/navbar/navbar";
 import { SpriteCanvas } from "./editor/sprite-canvas/sprite-canvas";
 import { TextureComponent } from "./editor/sprite-canvas/texture-component/texture-component";
@@ -38,5 +38,30 @@ export class App {
         this.viewport.panToCenter(texture.image.width / 2, texture.image.height / 2);
       });
     });
+  }
+
+  @HostListener("window:keydown", ["$event"])
+  onKeyDown(event: KeyboardEvent) {
+    const isCtrlOrCmd = event.ctrlKey || event.metaKey;
+    
+    if (!isCtrlOrCmd) return;
+
+    const key = event.key.toLowerCase();
+
+    if (key === "z") {
+      this.state.undo();
+      return;
+    }
+
+    if (key === "y") {
+      this.state.redo();
+      return;
+    }
+
+    if (key === "s") {
+      event.preventDefault();
+      this.state.saveResources();
+    }
+
   }
 }

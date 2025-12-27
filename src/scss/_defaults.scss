@@ -6,6 +6,7 @@
 @mixin border-bottom {
     border-bottom: var(--border-width) solid var(--border-color);
 }
+
 @mixin border-right {
     border-right: var(--border-width) solid var(--border-color);
 }

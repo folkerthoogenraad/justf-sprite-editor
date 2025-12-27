@@ -3,7 +3,7 @@
         <c-button (click)="folder.openFolder()">
             <c-icon icon="icon-open" /> open
         </c-button>
-        <c-button (click)="state.saveResources()">
+        <c-button (click)="state.saveResources()" [disabled]="!state.hasChangedSinceLastSave()">
             <c-icon icon="icon-save" /> save
         </c-button>
     </div>
@@ -21,10 +21,10 @@
     </div>
 
     <div class="buttons context-buttons">
-        <c-button>
+        <c-button (click)="state.undo()">
             <c-icon icon="icon-undo" /> undo
         </c-button>
-        <c-button>
+        <c-button (click)="state.redo()">
             <c-icon icon="icon-redo" /> redo
         </c-button>
     </div>

@@ -12,6 +12,8 @@
     // @include defaults.border;
     @include defaults.clickable;
 
+    &.disabled { color: var(--color-text-disabled); }
+
     // Regular buttons
     background-color: white;
     &:hover { background-color: #eee; }

@@ -5,11 +5,15 @@ import { ReadOnlyArray } from '../../../ts/utils/ReadOnlyArray';
 import { SpritePreviewComponent } from "../sprite-frame-preview-component/sprite-frame-preview-component";
 import { Icon } from "../../components/icon/icon";
 import { SpriteDetailsFrame } from "../sprite-details-frame/sprite-details-frame";
-import { SpriteProperties } from '../../../ts/SpriteProperties';
+import { SpriteProperties, SpriteProperty, SpritePropertyType } from '../../../ts/SpriteProperties';
+import { TextInput } from "../../components/text-input/text-input";
+import { NumberInput } from "../../components/number-input/number-input";
+import { DropdownButton } from "../../components/dropdown-button/dropdown-button";
+import { ToggleButton } from "../../components/toggle-button/toggle-button";
 
 @Component({
   selector: 'app-sprite-details',
-  imports: [Button, SpritePreviewComponent, Icon, SpriteDetailsFrame],
+  imports: [Button, SpritePreviewComponent, Icon, SpriteDetailsFrame, TextInput, NumberInput, DropdownButton, ToggleButton],
   templateUrl: './sprite-details.html',
   styleUrl: './sprite-details.scss',
 })
@@ -17,6 +21,18 @@ export class SpriteDetails {
   sprite = input<Sprite>();
   spriteChange = output<Sprite>();
 
+  constructor() {
+    effect(() => {
+      this.sprite();
+
+      // Should we stop or just call some cool function?
+      // untracked(() => { this.stopAnimation() });
+    });
+  }
+
+  // ========================================= //
+  // Updates
+  // ========================================= //
   addFrame() {
     const sprite = this.sprite();
 
@@ -55,13 +71,55 @@ export class SpriteDetails {
     this.spriteChange.emit(updated);
   }
 
-  constructor() {
-    effect(() => {
-      this.sprite();
+  updateSpriteId(id: string) {
+    const sprite = this.sprite();
 
-      // Should we stop or just call some cool function?
-      untracked(() => { this.stopAnimation() });
-    });
+    if(!sprite) return;
+
+    this.spriteChange.emit(sprite.setId(id));
+  }
+  updateSpriteFrameRate(rate: number) {
+    const sprite = this.sprite();
+
+    if(!sprite) return;
+
+    this.spriteChange.emit(sprite.setFrameRate(rate));
+  }
+
+  updatePropertyName(property: SpriteProperty, name: string) {
+    const sprite = this.sprite();
+
+    if(!sprite) return;
+
+    this.spriteChange.emit(sprite.updateProperty(property, property.setName(name)));
+  }
+  updatePropertyType(property: SpriteProperty, type: SpritePropertyType) {
+    const sprite = this.sprite();
+
+    if(!sprite) return;
+
+    this.spriteChange.emit(sprite.updateProperty(property, property.setType(type)));
+  }
+  updatePropertyValue(property: SpriteProperty, value: any) {
+    const sprite = this.sprite();
+
+    if(!sprite) return;
+
+    this.spriteChange.emit(sprite.updateProperty(property, property.setValue(value)));
+  }
+  deleteProperty(property: SpriteProperty) {
+    const sprite = this.sprite();
+
+    if(!sprite) return;
+
+    this.spriteChange.emit(sprite.removeProperty(property));
+  }
+  addNewProperty() {
+    const sprite = this.sprite();
+
+    if(!sprite) return;
+
+    this.spriteChange.emit(sprite.addProperty(new SpriteProperty("property", "String", false, "")));
   }
 
   // ========================================= //
@@ -78,6 +136,7 @@ export class SpriteDetails {
     if(!sprite) return;
 
     if(playing) {
+      this.animationPlaying.set(false);
       return;
     }
 

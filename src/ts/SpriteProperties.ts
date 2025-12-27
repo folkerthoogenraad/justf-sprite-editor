@@ -36,12 +36,65 @@ export const SpritePropertyTypes = [
 
 export type SpritePropertyType = typeof SpritePropertyTypes[number];
 
+function ensureCorrectTypedValue(type: SpritePropertyType, value: any): any {
+    const isString = typeof value === "string";
+    const isNumber = typeof value === "number";
+    const isObject = typeof value === "object";
+
+    switch(type) {
+        case "OffsetLeft":
+        case "OffsetRight":
+        case "OffsetTop":
+        case "OffsetBottom":
+        case "Float": {
+            if (isNumber) return value;
+            if (isString) return parseNumberOrDefault(value);
+            
+            return 0;
+        }
+        case "Integer": {
+            if (isNumber) return Math.round(value);
+            if (isString) return Math.round(parseNumberOrDefault(value));
+            
+            return 0;
+        }
+        case "String": {
+            if (isNumber) return value.toString();
+            if (isString) return value;
+            
+            return "";
+        }
+        default: {
+            return value;
+        }
+    }
+}
+
+function parseNumberOrDefault(s: string) {
+    try {
+        const value = parseFloat(s);
+
+        if(isNaN(value)){
+            return 0;
+        }
+        
+        return value;
+    }
+    catch(e) {
+        return 0;
+    }
+}
+
 export class SpriteProperty {
+    public readonly value: any;
+
     constructor(
         public readonly name: string,
         public readonly type: SpritePropertyType,
         public readonly hidden: boolean,
-        public readonly value: any) { }
+        value: any) {
+        this.value = ensureCorrectTypedValue(this.type, value);
+    }
 
     setName(name: string) {
         return new SpriteProperty(name, this.type, this.hidden, this.value);
@@ -74,7 +127,7 @@ export class SpriteProperty {
             type = "Unknown";
         }
 
-        return new SpriteProperty(data.name ?? "unnamed", type, data.value, data.hidden ?? 0);
+        return new SpriteProperty(data.name ?? "unnamed", type, data.hidden ?? false, data.value);
     }
 }
 

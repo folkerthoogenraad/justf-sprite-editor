@@ -2,6 +2,7 @@ import { computed, effect, inject, Injectable, signal, untracked } from '@angula
 import { Resources } from '../../ts/Resources';
 import { Sprite } from '../../ts/Sprite';
 import { ProjectFolderService } from './project-folder-service';
+import { UndoStack } from '../../ts/utils/UndoStack';
 
 export enum EditorTool {
   Select,
@@ -29,7 +30,14 @@ export class EditorStateService {
 
   tool = signal(EditorTool.Select);
 
-  resources = signal<Resources | undefined>(undefined);
+  private _savedResources = signal<Resources | undefined>(undefined);
+  private _resources = signal<Resources | undefined>(undefined);
+  private _resourcesHistory: UndoStack<Resources|undefined> = new UndoStack();
+
+  savedResources = this._savedResources.asReadonly();
+  resources = this._resources.asReadonly();
+
+  hasChangedSinceLastSave = computed(() => this.savedResources() !== this.resources());
 
   spritesForTexture = computed(() => {
     const texture = this.texture();
@@ -49,31 +57,63 @@ export class EditorStateService {
         this.reloadResources();
       });
     });
-    // effect(() => {
-    //   this.texture();
-
-    //   untracked(() => {
-    //     // TODO only clear selection if the new texture
-    //     // is not the one for the sprite.
-    //     this.selectedSpriteIds.set(new Map<string, Set<number>>());
-    //   });
-    // });
   }
 
   // ================================================= //
   // Editing (moved to another service, probably?)
   // ================================================= //
   addSprite(sprite: Sprite) {
-    this.resources.update(r => r?.addSprite(sprite));
+    this.updateResources(r => r?.addSprite(sprite));
   }
   removeSprite(sprite: Sprite) {
-    this.resources.update(r => r?.removeSprite(sprite));
+    this.updateResources(r => r?.removeSprite(sprite));
   }
   updateSprite(old: Sprite | undefined, current: Sprite | undefined) {
     if(!old) return;
     if(!current) return;
 
-    this.resources.update(r => r?.updateSprite(old, current));
+    this.updateResources(r => r?.updateSprite(old, current));
+  }
+
+  // ================================================= //
+  // Editing
+  // ================================================= //
+  updateResources(update: (r: Resources | undefined) => Resources | undefined) {
+    const r = this._resources();
+
+    if(r === undefined) {
+      return;
+    }
+
+    console.log("Updating....");
+
+    this._resources.update(update);
+
+    this._resourcesHistory.push(this._resources());
+  }
+  
+  undo() {
+    const previous = this._resourcesHistory.undo();
+
+    if(!previous) return;
+
+    this._resources.set(previous);
+  }
+
+  redo() {
+    const next = this._resourcesHistory.redo();
+
+    if(!next) return;
+
+    this._resources.set(next);
+  }
+
+  resetHistory() {
+    this._resourcesHistory.clear();
+    this._resourcesHistory.push(this.resources());
+  }
+  resetSaved() {
+    this._savedResources.set(this._resources());
   }
   
   // ================================================= //
@@ -110,7 +150,9 @@ export class EditorStateService {
     const folder = this.project.folder();
 
     if(!folder) {
-      this.resources.set(undefined);
+      this._resources.set(undefined);
+      this.resetHistory();
+      this.resetSaved();
       return;
     }
 
@@ -121,14 +163,19 @@ export class EditorStateService {
 
       let resources = Resources.deserialize(json);
 
-      this.resources.set(resources);
+      this._resources.set(resources);
+      this.resetHistory();
+      this.resetSaved();
 
       console.log("loaded!");
       console.dir(resources);
     }
     catch(e) {
-      console.dir(e);
-      this.resources.set(new Resources([]));
+      console.dir(e)
+      // TODO: clear history?
+      this._resources.set(new Resources([]));
+      this.resetHistory();
+      this.resetSaved();
     }
   }
   async saveResources() {
@@ -144,6 +191,8 @@ export class EditorStateService {
       let content = JSON.stringify(json);
       
       await folder.save(content);
+
+      this.resetSaved();
     }
     catch(e) {
       console.dir(e);

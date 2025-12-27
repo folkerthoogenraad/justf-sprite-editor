@@ -1,0 +1,26 @@
+.number-input {
+    display: flex;
+    align-items: stretch;
+    
+    --number-border: 1px solid var(--color-gray-100);
+    
+    & > * {
+        border-top: var(--number-border);
+        border-bottom: var(--number-border);
+    }
+
+    & > :first-child {
+        border-left: var(--number-border);
+    }
+
+    & > :last-child {
+        border-right: var(--number-border);
+    }
+    
+    c-text-input {
+        flex: 1;
+        text-align: center;
+
+        cursor: pointer;
+    }
+}

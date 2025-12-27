@@ -1,0 +1,24 @@
+<div class="number-input">
+    @if(buttons()) {
+        <c-button (click)="remove()">
+            <c-icon icon="icon-minus-7x7" x14 />
+        </c-button>
+    }
+
+    <c-text-input
+        #input
+        [(value)]="valueInternal" 
+        [valid]="valid()" 
+        [continuous]="true" 
+        [border]="false"
+        (commit)="commit()"
+        (pointerdown)="onPointerDown($event)"
+        (pointermove)="onPointerMove($event)"
+        (pointerup)="onPointerUp($event)"
+         />
+    @if(buttons()) {
+        <c-button (click)="add()">
+            <c-icon icon="icon-plus-7x7" x14 />
+        </c-button>
+    }
+</div>

@@ -1,0 +1,8 @@
+<div class="button-container">
+    <div class="button" (click)="toggle()" #openButton>
+        <ng-content select=".button-content"></ng-content>
+    </div>
+    <div class="button-dropdown" [class.open]="open()">
+        <ng-content select=".dropdown-items"></ng-content>
+    </div>
+</div>

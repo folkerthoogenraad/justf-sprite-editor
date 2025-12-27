@@ -1,1 +1,13 @@
-<input type="text">
+<div class="content">
+    {{valueInternal()}}
+    
+    <input type="text" 
+        #input
+        spellcheck="false"
+        [(ngModel)]="valueInternal"
+        (keydown.enter)="commitInternal(false)"
+        [class.invalid]="!valid()"
+        [class.border]="border()"
+        (blur)="commitInternal(false)"
+        >
+</div>

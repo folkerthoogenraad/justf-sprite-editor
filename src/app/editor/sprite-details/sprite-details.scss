@@ -40,3 +40,46 @@
         align-items: center;
     }
 }
+
+.sprite-properties-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr min-content;
+
+    justify-content: stretch;
+    align-items: stretch;
+    
+    .fixed {
+        color: var(--color-text-disabled);
+    }
+
+    .key, .value, .value-full {
+        padding: 2px;
+
+        display: flex;
+        align-items: stretch;
+
+        & > * {
+            flex:1;
+        }
+    }
+
+    .value-full {
+        grid-column: 2 / 4;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.dropdown-items {
+    display: flex;
+    flex-direction: column;
+
+    padding: 2px;
+
+    min-width: 200px;
+    border: var(--border-width) solid var(--border-color);
+}

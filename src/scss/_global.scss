@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
 
-    font-family: "Oxygen", sans-serif;
+    font-family: "Oxygen Mono", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 16px;
@@ -22,9 +22,14 @@ body {
     --color-black: black;
 
     --color-text: #332;
+    --color-text-disabled: #8f8f8f;
+    --color-background: white;
 
     --color-green: #32a14e;
     --color-text-on-green: white;
+    
+    --color-red: #ac2222;
+    --color-text-on-red: white;
 
     --color-light-blue: #87befc;
     --color-text-on-blue-light: black;

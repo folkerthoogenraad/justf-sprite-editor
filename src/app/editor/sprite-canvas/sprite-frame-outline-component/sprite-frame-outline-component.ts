@@ -232,6 +232,8 @@ export class SpriteFrameOutlineComponent {
     const width = outline.right - outline.left;
     const height = outline.bottom - outline.top;
 
+    if(frame.x === x && frame.y === y && frame.width === width && frame.height === height) return;
+
     const updatedFrame = frame.setPosition(x, y).setSize(width, height);
 
     this.frameChange.emit(updatedFrame);

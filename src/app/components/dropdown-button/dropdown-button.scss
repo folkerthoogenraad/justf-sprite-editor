@@ -1,0 +1,20 @@
+.button-container {
+    position: relative;
+
+    .button-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+
+        display: none;
+
+        &.open {
+            display: flex;
+            flex-direction: column;
+
+            z-index: 100;
+        }
+        
+        background-color: var(--color-background);
+    }
+}

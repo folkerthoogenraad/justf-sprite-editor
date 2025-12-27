@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, HostBinding, input } from '@angular/core';
 
 @Component({
   selector: 'c-button',
@@ -8,5 +8,10 @@ import { Component, input } from '@angular/core';
   host: { class: "button" }
 })
 export class Button {
-  
+  disabled = input(false);
+
+  @HostBinding("class.disabled") 
+  get isDisabled() {
+    return this.disabled();
+  }
 }
