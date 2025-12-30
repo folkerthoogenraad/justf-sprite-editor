@@ -1,59 +1,19 @@
-# SpriteTileEditor
+# JustF Sprite Editor
+This is a simple tool for annotating sprite atlasses and extract sprites and animations from it, including adding additional data to it.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+## Core Pillars
+ - Ease of implementation for developers. Not only should the program be very easy to use, the implementation into a custom engine should be very simple. Whatever you don't need should be ignored.
 
-## Development server
+## Roadmap
+ - Texture explorer allow for directories
+ - Update the readme with needed information
+ - Adding collision shapes to frames
+ - Additional types of sprite properties
+    - Positions on frame
+    - Directions
+ - Nine slice sprite offsets
+ - Exporting and packing (maybe seperate cli tooling)
+ - Search in Sprite explorer
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Building and contribution
+This project was build with angular 21, so `ng serve` and `ng build` can be used for building and serving the project locally.
