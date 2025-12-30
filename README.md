@@ -2,7 +2,7 @@
 This is a simple tool for annotating sprite atlasses and extract sprites and animations from it, including adding additional data to it.
 
 ## Core Pillars
- - Ease of implementation for developers. Not only should the program be very easy to use, the implementation into a custom engine should be very simple. Whatever you don't need should be ignored.
+ - **Ease of implementation for developers**. Not only should the program be very easy to use, the implementation into a custom engine should be very simple. Whatever you don't need should be ignored.
 
 ## Roadmap
  - Texture explorer allow for directories
