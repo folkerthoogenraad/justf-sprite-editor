@@ -16,7 +16,7 @@ export class Icon {
   x10 = input(false, { transform: booleanAttribute });
 
   url = computed(() => {
-    return `/images/${this.icon()}.png`;
+    return `images/${this.icon()}.png`;
   });
   alt = computed(() => {
     return `An icon of ${this.icon()}`;
