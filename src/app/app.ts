@@ -42,9 +42,9 @@ export class App {
 
   @HostListener("window:keydown", ["$event"])
   onKeyDown(event: KeyboardEvent) {
-    const isCtrlOrCmd = event.ctrlKey || event.metaKey;
+    const ctrlDown = event.ctrlKey || event.metaKey;
     
-    if (!isCtrlOrCmd) return;
+    if (!ctrlDown) return;
 
     const key = event.key.toLowerCase();
 

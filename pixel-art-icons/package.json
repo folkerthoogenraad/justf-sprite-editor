@@ -1,0 +1,24 @@
+{
+  "name": "@justfolkert/pixel-art-icons",
+  "version": "1.0.0",
+  "description": "A pixel art icon packer",
+  "license": "MIT",
+  "author": "Folkert Hoogenraad",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "convert": "node png-2-svg.js",
+    "convert-public": "node png-2-svg.js -i \"../public/images/icon-*.png\" -o \"../public/images/svg/\"",
+    "convert-to-font": "node svg-2-font.js",
+    "convert-to-ttf": "svg2ttf",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "glob": "^13.0.0",
+    "minimist": "^1.2.8",
+    "sharp": "^0.34.5",
+    "svg-builder": "^3.0.4",
+    "svg2ttf": "^6.0.3",
+    "svgicons2svgfont": "^15.0.1"
+  }
+}
