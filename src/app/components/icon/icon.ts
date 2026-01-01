@@ -21,4 +21,8 @@ export class Icon {
   alt = computed(() => {
     return `An icon of ${this.icon()}`;
   });
+
+  iconClass = computed(() => {
+    return `icons-${this.icon()}`;
+  });
 }

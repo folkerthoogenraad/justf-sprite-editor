@@ -7,11 +7,9 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "convert": "node png-2-svg.js",
-    "convert-public": "node png-2-svg.js -i \"../public/images/icon-*.png\" -o \"../public/images/svg/\"",
-    "convert-to-font": "node svg-2-font.js",
-    "convert-to-ttf": "svg2ttf",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "convert": "npm run convert-images & npm run convert-fonts",
+    "convert-images": "node png-2-svg.js -i \"../public/images/icon-*.png\" -o \"../public/images/svg/\"",
+    "convert-fonts": "node svg-2-font.js -i \"../public/images/svg/\" -o \"../public/images/icon-font/\""
   },
   "dependencies": {
     "glob": "^13.0.0",
@@ -19,6 +17,10 @@
     "sharp": "^0.34.5",
     "svg-builder": "^3.0.4",
     "svg2ttf": "^6.0.3",
-    "svgicons2svgfont": "^15.0.1"
+    "svgtofont": "^6.5.0"
+  },
+    "svgtofont": {
+     "css": true,
+     "website": false
   }
 }
