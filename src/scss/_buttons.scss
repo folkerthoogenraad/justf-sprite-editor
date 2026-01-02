@@ -7,15 +7,28 @@
 
     gap: 4px;
 
-    padding: 2px 2px;
+    padding: 2px 4px;
     
-    // @include defaults.border;
+    border-radius: var(--border-radius);
     @include defaults.clickable;
 
-    &.disabled { color: var(--color-text-disabled); }
-
     // Regular buttons
-    background-color: white;
-    &:hover { background-color: #eee; }
-    &:active { background-color: #ddd; }
+    background-color: rgb(216, 212, 195);
+    &:hover { background-color: rgb(209, 208, 201); }
+    &:active { background-color: rgb(165, 160, 138); }
+    
+    &.enabled {
+        color: var(--color-text-on-light-blue);
+        background-color: var(--color-light-blue);
+        
+        &:hover { background-color: var(--color-blue); }
+        &:active { background-color: var(--color-dark-blue) }
+    }
+    
+    &.disabled { 
+        color: var(--color-text-disabled);
+        
+        &:hover { background-color: rgb(216, 212, 195); }
+        &:active {  background-color: rgb(216, 212, 195); }
+    }
 }

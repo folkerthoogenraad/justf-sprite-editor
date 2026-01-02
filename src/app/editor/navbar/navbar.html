@@ -21,11 +21,11 @@
     </div>
 
     <div class="buttons context-buttons">
-        <c-button (click)="state.undo()">
-            <c-icon icon="icon-undo" /> undo
+        <c-button (click)="state.undo()" title="Undo">
+            <c-icon icon="icon-undo" />
         </c-button>
-        <c-button (click)="state.redo()">
-            <c-icon icon="icon-redo" /> redo
+        <c-button (click)="state.redo()" title="Redo">
+            <c-icon icon="icon-redo" />
         </c-button>
     </div>
 </nav>
