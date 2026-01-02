@@ -42,5 +42,5 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-/public/images/svg
-/public/images/icon-font
+/public/icons/
+/src/assets/icons/svg/

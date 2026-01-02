@@ -27,3 +27,15 @@ img {
     pointer-events: none;
     user-select: none;
 }
+
+span {
+    font-size: 24px;
+    
+    &.x16 { font-size: 16px; }
+    &.x14 { font-size: 14px; }
+    &.x12 { font-size: 12px; }
+    &.x10 { font-size: 10px; }
+
+    pointer-events: none;
+    user-select: none;
+}

@@ -11,6 +11,16 @@
         
         cursor: crosshair;
 
+        img {
+            image-rendering: pixelated;
+
+            user-select: none;
+            pointer-events: none;
+
+            width: 10px;
+            height: 10px;
+        }
+
     }
     .preview {
         @include defaults.readable-text;

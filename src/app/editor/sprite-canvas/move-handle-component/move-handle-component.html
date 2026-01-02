@@ -6,7 +6,9 @@
     [style.left.px]="styleLeft()"
     [style.top.px]="styleTop()">
 
-    <c-icon class="handle-icon" x10 icon="handle-origin" />
+    <div class="handle-icon" title="origin">
+        <img src="images/handle-origin.png" alt="">
+    </div>
     
     @if(this.dragPointerId > 0) {
         <span class="preview">{{ (this.offset()?.x ?? 0) + this.x() }}x{{(this.offset()?.y ?? 0) + this.y()}} </span>

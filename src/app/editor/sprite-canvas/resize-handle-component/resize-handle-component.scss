@@ -21,4 +21,14 @@
     &.nw {cursor: nw-resize; }
     &.se {cursor: se-resize; }
     &.sw {cursor: sw-resize; }
+
+    img {
+        image-rendering: pixelated;
+
+        user-select: none;
+        pointer-events: none;
+
+        width: 12px;
+        height: 12px;
+    }
 }

@@ -15,13 +15,6 @@ export class Icon {
   x12 = input(false, { transform: booleanAttribute });
   x10 = input(false, { transform: booleanAttribute });
 
-  url = computed(() => {
-    return `images/${this.icon()}.png`;
-  });
-  alt = computed(() => {
-    return `An icon of ${this.icon()}`;
-  });
-
   iconClass = computed(() => {
     return `icons-${this.icon()}`;
   });
