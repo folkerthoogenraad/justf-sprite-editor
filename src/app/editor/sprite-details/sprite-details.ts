@@ -1,4 +1,4 @@
-import { Component, effect, input, output, signal, untracked } from '@angular/core';
+import { Component, effect, inject, input, output, signal, untracked } from '@angular/core';
 import { Sprite, SpriteFrame } from '../../../ts/Sprite';
 import { Button } from "../../components/button/button";
 import { ReadOnlyArray } from '../../../ts/utils/ReadOnlyArray';
@@ -10,6 +10,7 @@ import { TextInput } from "../../components/text-input/text-input";
 import { NumberInput } from "../../components/number-input/number-input";
 import { DropdownButton } from "../../components/dropdown-button/dropdown-button";
 import { ToggleButton } from "../../components/toggle-button/toggle-button";
+import { EditorSelectionService } from '../editor-selection-service';
 
 @Component({
   selector: 'app-sprite-details',
@@ -17,7 +18,8 @@ import { ToggleButton } from "../../components/toggle-button/toggle-button";
   templateUrl: './sprite-details.html',
   styleUrl: './sprite-details.scss',
 })
-export class SpriteDetails {
+export class SpriteDetails {  
+  selection = inject(EditorSelectionService);
   sprite = input<Sprite>();
   spriteChange = output<Sprite>();
 
@@ -27,6 +29,19 @@ export class SpriteDetails {
 
       // Should we stop or just call some cool function?
       // untracked(() => { this.stopAnimation() });
+    });
+    effect(() => {
+      const frames = this.selection.selectedSpriteFrames();
+
+      if(!frames) return;
+      if(frames.size !== 1) return;
+
+      let frameIndex = frames.keys().next().value!;
+
+      untracked(() => {
+        this.animationPlaying.set(false);
+        this.animationFrameIndex.set(frameIndex);
+      });
     });
   }
 

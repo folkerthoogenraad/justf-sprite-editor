@@ -23,6 +23,19 @@ export class EditorSelectionService {
     
     return resources.getSpriteById(id);
   });
+  selectedSpriteFrames = computed(() => {
+    const ids = this.selectedSpriteIds();
+    const resources = this.state.resources();
+
+    if(!ids || !resources) return undefined;
+
+    if(ids.size === 0) return undefined;
+    if(ids.size > 1) return undefined;
+
+    let id = ids.keys().next().value!;
+    
+    return ids.get(id);
+  });
 
   // ================================================= //
   // Selection
