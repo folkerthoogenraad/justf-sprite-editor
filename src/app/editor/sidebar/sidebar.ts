@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { booleanAttribute, Component, input, signal } from '@angular/core';
 import { TexturesExplorer } from "../textures-explorer/textures-explorer";
 import { SpritesExplorer } from "../sprites-explorer/sprites-explorer";
 
@@ -10,4 +10,7 @@ import { SpritesExplorer } from "../sprites-explorer/sprites-explorer";
 })
 export class Sidebar {
   selectedItem = signal(""); // Move this to editor state probably? :)
+
+  right = input(false, {transform: booleanAttribute});
+  left = input(false, {transform: booleanAttribute});
 }

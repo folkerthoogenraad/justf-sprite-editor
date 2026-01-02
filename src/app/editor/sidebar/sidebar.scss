@@ -1,4 +1,20 @@
+@use "defaults";
+
 .sidebar {
+    height: 100%;
+
+    color: rgb(0, 0, 0);
+    background-color: #dbd5ce;
+    
+    padding: 6px;
+
+    &.left {
+        @include defaults.border-right;
+    }
+    &.right {
+        @include defaults.border-left;
+    }
+
     display: flex;
     flex-direction: column;
 

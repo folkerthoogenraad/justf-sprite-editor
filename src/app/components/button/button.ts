@@ -1,4 +1,4 @@
-import { Component, HostBinding, input } from '@angular/core';
+import { booleanAttribute, Component, HostBinding, input } from '@angular/core';
 
 @Component({
   selector: 'c-button',
@@ -8,10 +8,16 @@ import { Component, HostBinding, input } from '@angular/core';
   host: { class: "button" }
 })
 export class Button {
-  disabled = input(false);
+  disabled = input(false,  {transform: booleanAttribute});
+  small = input(false,  {transform: booleanAttribute});
 
   @HostBinding("class.disabled") 
   get isDisabled() {
     return this.disabled();
+  }
+
+  @HostBinding("class.small") 
+  get isSmall() {
+    return this.small();
   }
 }

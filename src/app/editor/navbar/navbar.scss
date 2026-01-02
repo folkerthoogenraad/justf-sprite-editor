@@ -6,6 +6,9 @@ nav {
 
     display: flex;
 
+    color: var(--color-navbar-text);
+    background-color: var(--color-navbar-background);
+
     .buttons {
         display: flex;
         

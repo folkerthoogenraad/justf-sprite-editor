@@ -1,34 +1,56 @@
 @use "defaults" as defaults;
 
 .button {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
 
     gap: 4px;
-
-    padding: 2px 4px;
     
     border-radius: var(--border-radius);
     @include defaults.clickable;
 
+    &.default {
+        padding: 2px 4px;
+        
+        color: var( --color-button-default-text);
+        background-color: var(--color-button-default-background);
+    
+        &:hover { 
+            color: var( --color-button-default-text-hover); 
+            background-color: var( --color-button-default-background-hover); 
+        }
+    }
+
     // Regular buttons
-    background-color: rgb(216, 212, 195);
-    &:hover { background-color: rgb(209, 208, 201); }
-    &:active { background-color: rgb(165, 160, 138); }
+    // &.small {
+    //     border: 2px solid var(--color-button-default-background);
+
+    //     color: var(--color-button-default-background);
+    //     background-color: unset;
+
+    //     &:hover { 
+    //         color: unset;
+    //         background-color: unset;
+    //     }
+    // }
     
     &.enabled {
-        color: var(--color-text-on-light-blue);
-        background-color: var(--color-light-blue);
+        color: var(--color-selected-text);
+        background-color: var(--color-selected-background);
         
-        &:hover { background-color: var(--color-blue); }
-        &:active { background-color: var(--color-dark-blue) }
+        &:hover { 
+            color: var(--color-selected-text-hover);
+            background-color: var(--color-selected-background-hover); 
+        }
     }
     
     &.disabled { 
         color: var(--color-text-disabled);
         
-        &:hover { background-color: rgb(216, 212, 195); }
-        &:active {  background-color: rgb(216, 212, 195); }
+        &:hover { 
+            color: var(--color-text-disabled);
+            background-color: var(--color-button-default-background); 
+        }
     }
 }

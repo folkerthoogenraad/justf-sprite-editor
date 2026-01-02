@@ -1,9 +1,9 @@
 <nav>
     <div class="buttons global-buttons">
-        <c-button (click)="folder.openFolder()">
+        <c-button small (click)="folder.openFolder()">
             <c-icon icon="icon-open" /> open
         </c-button>
-        <c-button (click)="state.saveResources()" [disabled]="!state.hasChangedSinceLastSave()">
+        <c-button small (click)="state.saveResources()" [disabled]="!state.hasChangedSinceLastSave()">
             <c-icon icon="icon-save" /> save
         </c-button>
     </div>
@@ -21,10 +21,10 @@
     </div>
 
     <div class="buttons context-buttons">
-        <c-button (click)="state.undo()" title="Undo">
+        <c-button small (click)="state.undo()" title="Undo">
             <c-icon icon="icon-undo" />
         </c-button>
-        <c-button (click)="state.redo()" title="Redo">
+        <c-button small (click)="state.redo()" title="Redo">
             <c-icon icon="icon-redo" />
         </c-button>
     </div>

@@ -1,5 +1,9 @@
 @use "defaults";
 
+.controls {
+    display: flex;
+}
+
 .sprite-preview {
     display: flex;
     justify-content: center;

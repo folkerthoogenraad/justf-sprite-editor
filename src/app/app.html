@@ -2,12 +2,12 @@
 <div class="app-container">
   <app-navbar></app-navbar>
 
-  <app-sidebar class="left">
+  <app-sidebar class="left" left>
     <app-textures-explorer />
     <app-sprites-explorer />
   </app-sidebar>
   
-  <app-sidebar class="right">
+  <app-sidebar class="right" right>
     <app-sprite-details [sprite]="selection.selectedSprite()" (spriteChange)="state.updateSprite(selection.selectedSprite(), $event)" />
   </app-sidebar>
 

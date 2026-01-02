@@ -1,3 +1,5 @@
+@use "defaults";
+
 .sprite {
     cursor: default;
     
@@ -9,9 +11,7 @@
 
     gap: 4px;
 
-    &.selected {
-        background-color: var(--color-light-blue);
-    }
+    @include defaults.selectable-list-item;
 
     .actions {
         flex-grow:1;
