@@ -8,8 +8,8 @@
   "main": "main.js",
   "scripts": {
     "convert": "npm run convert-images & npm run convert-fonts",
-    "convert-images": "node png-2-svg.js -i \"../public/images/icon-*.png\" -o \"../public/images/svg/\"",
-    "convert-fonts": "node svg-2-font.js -i \"../public/images/svg/\" -o \"../public/images/icon-font/\""
+    "convert-images": "node png-2-svg.js -i \"../src/assets/icons/*.png\" -o \"../src/assets/icons/svg/\"",
+    "convert-fonts": "node svg-2-font.js -i \"../src/assets/icons/svg/\" -o \"../public/icons/\""
   },
   "dependencies": {
     "glob": "^13.0.0",
