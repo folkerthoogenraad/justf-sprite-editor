@@ -79,8 +79,10 @@ body {
     --color-selected-border: #6b4949;
 
     --color-input-background: #1f1e2f;
-    --color-input-text: #f7eaf1;
-    --color-input-border: #4e4059;
+    --color-input-text: var(--color-text); //#f7eaf1;
+    --color-input-focussed-background: #1f1e2f;
+    --color-input-border: #2a2936;
+    --color-input-focussed-border: #6b4949;
 }
 
 h1,
@@ -90,6 +92,11 @@ h4,
 h5,
 h6,
 p {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5em;
+
     margin: 0;
     padding: 0;
 
@@ -100,4 +107,19 @@ p {
 // Just for hosts having to have inline flex....
 .host-inline-flex {
     display: inline-flex;
+}
+
+.heading-test{ 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    color: var(--color-navbar-text);
+    background: var(--color-navbar-background);
+    
+    padding: 4px;
+    gap: var(--gap);
+
+    margin-top: var(--gap);
+    margin-bottom: var(--gap);
 }

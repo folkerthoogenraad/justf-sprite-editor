@@ -1,3 +1,7 @@
+<div class="heading-test">
+    <c-icon icon="icon-sprite" /> Preview
+</div>
+
 @if(!sprite()) {
     <p>No sprite selected (or multiple)</p>
 }
@@ -27,7 +31,11 @@
         </c-button>
     </div>
 
-    <h4><c-icon icon="icon-properties" /> Properties</h4>
+    <div class="heading-test">
+        <c-icon icon="icon-properties" /> Properties
+    </div>
+
+    <!-- <h4><c-icon icon="icon-properties" /> Properties</h4> -->
 
     <div class="sprite-properties-table">
         <span class="key fixed">Id </span>
@@ -83,7 +91,9 @@
         </span>
     </div>
     
-    <h4><c-icon icon="icon-frame" /> Frames</h4>
+    <div class="heading-test">
+        <c-icon icon="icon-frame" /> Frames
+    </div>
     
     <div class="sprite-frames">
         @for (frame of sprite()?.frames; track $index) {

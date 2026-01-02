@@ -6,24 +6,23 @@
     visibility: hidden;
 
     display: flex;
-    min-width: 30px;
-    min-height: 1em;
 
     white-space: nowrap;
 
     text-overflow: ellipsis;
+    min-width: 30px;
+    height: 1.5em;
 
     input {
         @include defaults.overlay;
 
-        padding: 0px;
         font-family: inherit;
         font-size: inherit;
         text-align: inherit;
         
         visibility: visible;
         
-        padding: 2px 4px;
+        padding: 4px 8px;
 
         color: var(--color-input-text);
         background-color: var(--color-input-background);
@@ -35,15 +34,13 @@
             border-radius: var(--border-radius);
         }
         
-        &:hover {
-            background-color: var(--color-gray-100);
-        }
         &:focus {
-            background-color: var(--color-white);
-            outline: 2px solid var(--color-light-blue);
+            background-color: var(--color-input-focussed-background);
+            outline: 2px solid var(--color-input-focussed-border);
         }
+
         &.invalid {
-            outline: 2px solid var(--color-red);
+            border-color: var(--color-red);
         }
     }
 

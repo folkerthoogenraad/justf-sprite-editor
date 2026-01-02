@@ -6,7 +6,11 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+
+        color: var(--color-navbar-text);
+        background: var(--color-navbar-background);
         
+        padding: 4px;
         gap: var(--gap);
 
         .title {
