@@ -11,9 +11,9 @@
 
     aspect-ratio: 1;
 
-    background: var(--color-gray-100);
+    background: var(--color-input-background);
 
-    padding: 8px;
+    padding: 12px;
 
     .sprite-preview-component {
         display: flex;
@@ -33,8 +33,6 @@
     gap: 2px;
 
     .frame {
-        border: var(--border-width) solid var(--color-gray-100);
-
         aspect-ratio: 1 / 1;
     }
     
@@ -42,6 +40,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        border: var(--border-width) solid var(--color-input-border);
+        border-radius: var(--border-radius);
+        border-style: dotted;
     }
 }
 

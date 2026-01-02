@@ -23,18 +23,20 @@
     }
 
     .background {
-        &:hover {
-            background-color: white;
-            &:hover { background-color: #eee; }
-            &:active { background-color: #ddd; }
-        }
+        @include defaults.selectable-list-item;
 
-        &.selected {
-            background-color: var(--color-light-blue);
+        // &:hover {
+        //     background-color: white;
+        //     &:hover { background-color: #eee; }
+        //     &:active { background-color: #ddd; }
+        // }
+
+        // &.selected {
+        //     background-color: var(--color-light-blue);
             
-            &:hover { background-color: var(--color-blue); }
-            &:active { background-color: var(--color-dark-blue) }
-        }
+        //     &:hover { background-color: var(--color-blue); }
+        //     &:active { background-color: var(--color-dark-blue) }
+        // }
     }
 
 

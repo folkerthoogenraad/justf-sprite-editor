@@ -38,6 +38,8 @@
     user-select: none;
 
     padding: 2px 8px;
+
+    border: var(--border-width) solid var(--color-selectable-border);
     border-radius: var(--border-radius);
     
     color: var(--color-selectable-text);
@@ -50,6 +52,7 @@
     &.selected {
         color: var(--color-selected-text);
         background-color: var(--color-selected-background);
+        border-color: var(--color-selected-border);
     }
     &.selected:active {
         color: var(--color-selected-text-hover);

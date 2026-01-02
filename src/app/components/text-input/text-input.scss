@@ -19,19 +19,20 @@
         padding: 0px;
         font-family: inherit;
         font-size: inherit;
-        color: inherit;
         text-align: inherit;
-        background-color: unset;
         
         visibility: visible;
         
         padding: 2px 4px;
-        background-color: var(--color-white);
+
+        color: var(--color-input-text);
+        background-color: var(--color-input-background);
         
         border: none;
         
         &.border{
-            border: 1px solid var(--color-gray-100);
+            border: var(--border-width) solid var(--color-input-border);
+            border-radius: var(--border-radius);
         }
         
         &:hover {

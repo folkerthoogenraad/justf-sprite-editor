@@ -37,20 +37,20 @@
     
     &.enabled {
         color: var(--color-selected-text);
-        background-color: var(--color-selected-background);
+        // background-color: var(--color-selected-background);
         
         &:hover { 
             color: var(--color-selected-text-hover);
-            background-color: var(--color-selected-background-hover); 
+            // background-color: var(--color-selected-background-hover); 
         }
     }
     
     &.disabled { 
         color: var(--color-text-disabled);
         
-        &:hover { 
-            color: var(--color-text-disabled);
-            background-color: var(--color-button-default-background); 
-        }
+        // &:hover { 
+        //     color: var(--color-text-disabled);
+        //     background-color: var(--color-button-default-background); 
+        // }
     }
 }

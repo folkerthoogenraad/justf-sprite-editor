@@ -27,7 +27,8 @@
         </c-button>
     </div>
 
-    <h4>Properties</h4>
+    <h4><c-icon icon="icon-properties" /> Properties</h4>
+
     <div class="sprite-properties-table">
         <span class="key fixed">Id </span>
         <span class="value-full">
@@ -82,9 +83,8 @@
         </span>
     </div>
     
-
-    <h4>Frames</h4>
-
+    <h4><c-icon icon="icon-frame" /> Frames</h4>
+    
     <div class="sprite-frames">
         @for (frame of sprite()?.frames; track $index) {
             <app-sprite-details-frame class="frame" 

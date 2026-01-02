@@ -2,7 +2,7 @@
     display: flex;
     align-items: stretch;
     
-    --number-border: 1px solid var(--color-gray-100);
+    --number-border: var(--border-radius) solid var(--color-input-border);
     
     & > * {
         border-top: var(--number-border);
@@ -11,10 +11,12 @@
 
     & > :first-child {
         border-left: var(--number-border);
+        border-left-width: var(--border-width);
     }
 
     & > :last-child {
         border-right: var(--number-border);
+        border-right-width: var(--border-width);
     }
     
     c-text-input {

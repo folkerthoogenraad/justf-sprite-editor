@@ -6,6 +6,10 @@
 
     overflow: hidden;
 
-    background: repeating-conic-gradient(#cfcfcf 0 25%, #acacac 0 50%) 
-      50% / 20px 20px;
+    // background: repeating-conic-gradient(#cfcfcf 0 25%, #acacac 0 50%) 
+    //   50% / 20px 20px;
+
+    background: url("../../../assets/grid.png");
+    background-size: 512px 512px;
+    image-rendering: pixelated;
 }

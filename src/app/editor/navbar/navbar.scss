@@ -7,7 +7,7 @@ nav {
     display: flex;
 
     color: var(--color-navbar-text);
-    background-color: var(--color-navbar-background);
+    background: var(--color-navbar-background);
 
     .buttons {
         display: flex;
@@ -18,6 +18,7 @@ nav {
 
         &:not(:last-child) {
             @include defaults.border-right;
+            border-color: var(--border-color-light);
         }
     }
     

@@ -21,7 +21,7 @@ export class SpriteCanvas implements AfterViewInit {
   backgroundStyles = computed(() => {
     return {
       'background-position': `${-this.viewport.viewportLeft() * this.viewport.zoomLevel()}px ${-this.viewport.viewportTop() * this.viewport.zoomLevel()}px`,
-      'background-size': `${this.viewport.zoomLevel() * 64}px ${this.viewport.zoomLevel() * 64}px`,
+      'background-size': `${this.viewport.zoomLevel() * 128}px ${this.viewport.zoomLevel() * 128}px`,
     };
   });
   
