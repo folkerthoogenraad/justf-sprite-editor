@@ -38,6 +38,8 @@
     <!-- <h4><c-icon icon="icon-properties" /> Properties</h4> -->
 
     <div class="sprite-properties-table">
+        <span class="heading">Sprite</span>
+
         <span class="key fixed">Id </span>
         <span class="value-full">
             <c-text-input [value]="sprite()!.id" (valueChange)="updateSpriteId($event)" />    
@@ -51,6 +53,23 @@
             <c-number-input [value]="sprite()!.frameRate" (valueChange)="updateSpriteFrameRate($event)" />    
         </span>
         <span class="actions">FPS</span>
+
+        
+        <span class="heading">Frame</span>
+
+        <span class="key fixed">Position </span>
+        <span class="value-full">
+            {{sprite()?.getBounds()?.top}}x{{sprite()?.getBounds()?.left}}
+        </span>
+        <span class="key fixed">Size </span>
+        <span class="value-full">
+            {{sprite()?.getBounds()?.width}}x{{sprite()?.getBounds()?.width}}
+        </span>
+
+        <span class="key fixed">Origin </span>
+        <span class="value-full">
+            {{sprite()?.getBounds()?.width}}x{{sprite()?.getBounds()?.width}}
+        </span>
 
         @for (property of sprite()!.properties.properties; track $index) {
             <span class="key" [title]="property.name + ' - ' + property.type">

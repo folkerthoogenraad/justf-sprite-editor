@@ -55,7 +55,7 @@
     align-items: stretch;
     
     .fixed {
-        color: var(--color-text-disabled);
+        color: var(--color-text); // TODO?
     }
 
     .key, .value, .value-full {
@@ -71,6 +71,13 @@
 
     .value-full {
         grid-column: 2 / 4;
+    }
+
+    .heading {
+        padding-top:10px;
+        padding-bottom:2px;
+        font-style: italic;
+        grid-column: 1 / 4;
     }
 
     .actions {
