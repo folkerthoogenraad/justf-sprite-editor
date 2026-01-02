@@ -21,6 +21,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Build icons
+        run: |
+          cd pixel-art-icons
+          npm install
+          npm run convert
       - name: Build
         run: |
           npm install
