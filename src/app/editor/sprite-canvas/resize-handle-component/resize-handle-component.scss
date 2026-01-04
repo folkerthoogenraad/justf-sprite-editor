@@ -12,16 +12,16 @@
     
     transform: translate(-50%, -50%);
 
-    &.n {cursor: n-resize; }
-    &.s {cursor: s-resize; }
-    &.w {cursor: w-resize; }
-    &.e {cursor: e-resize; }
+    &.n {cursor: var(--cursor-n-resize); }
+    &.s {cursor: var(--cursor-s-resize); }
+    &.w {cursor: var(--cursor-w-resize); }
+    &.e {cursor: var(--cursor-e-resize); }
 
-    &.ne {cursor: ne-resize; }
-    &.nw {cursor: nw-resize; }
-    &.se {cursor: se-resize; }
-    &.sw {cursor: sw-resize; }
-
+    &.ne {cursor: var(--cursor-ne-resize); }
+    &.nw {cursor: var(--cursor-nw-resize); }
+    &.se {cursor: var(--cursor-se-resize); }
+    &.sw {cursor: var(--cursor-sw-resize); }
+    
     img {
         image-rendering: pixelated;
 

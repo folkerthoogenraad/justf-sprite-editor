@@ -31,7 +31,7 @@ export class SpriteDetails {
       // untracked(() => { this.stopAnimation() });
     });
     effect(() => {
-      const frames = this.selection.selectedSpriteFrames();
+      const frames = this.selection.selectedSpriteFramesIndices();
 
       if(!frames) return;
       if(frames.size !== 1) return;

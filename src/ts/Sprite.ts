@@ -149,6 +149,27 @@ export class SpriteFrame {
     setOrigin(originX: number, originY: number) {
         return new SpriteFrame(this.x, this.y, this.width, this.height, originX, originY, this.properties);
     }
+    setRelativeOrigin(rx: number, ry: number, round: boolean = true) {
+        return new SpriteFrame(this.x, this.y, this.width, this.height, Math.round(this.width * rx * 2) * 0.5, Math.round(this.height * ry * 2) * 0.5, this.properties);
+    }
+    
+    // =================================================================== //
+    // Helpers
+    // =================================================================== //
+    get relativeOriginX() {return this.originX / this.width; }
+    get relativeOriginY() {return this.originY / this.height; }
+
+    isOriginTopLeft() {return this.originX === 0 && this.originY === 0; }
+    isOriginTopCenter() {return this.originX === this.width / 2 && this.originY === 0; }
+    isOriginTopRight() {return this.originX === this.width && this.originY === 0; }
+    
+    isOriginCenterLeft() {return this.originX === 0 && this.originY === this.height / 2; }
+    isOriginCenter() {return this.originX === this.width / 2 && this.originY === this.height / 2; }
+    isOriginCenterRight() {return this.originX === this.width && this.originY === this.height / 2; }
+    
+    isOriginBottomLeft() {return this.originX === 0 && this.originY === this.height; }
+    isOriginBottomCenter() {return this.originX === this.width / 2 && this.originY === this.height; }
+    isOriginBottomRight() {return this.originX === this.width && this.originY === this.height; }
 
     // =================================================================== //
     // Properties (forwarding)

@@ -9,7 +9,7 @@
         display: inline-flex;
         transform: translate(-50%, -50%);
         
-        cursor: crosshair;
+        cursor: var(--cursor-edit-origin);
 
         img {
             image-rendering: pixelated;

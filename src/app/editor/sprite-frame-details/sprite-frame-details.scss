@@ -1,0 +1,68 @@
+@use "sidebarpanel";
+
+.frame-transform {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:  
+        "origin-preview x width"
+        "origin-preview y height"
+        "origin-preview ox oy"
+        ;
+    
+    align-items: center;
+    
+    .frame-origin-preview {grid-area: origin-preview;}
+    .frame-x {grid-area: x;}
+    .frame-y {grid-area: y;}
+    .frame-width {grid-area: width;}
+    .frame-height {grid-area: height;}
+    .frame-ox {grid-area: ox;}
+    .frame-oy {grid-area: oy;}
+}
+
+.frame-origin-preview {
+    padding: 10px;
+}
+
+.origin-editor {
+    position: relative;
+
+    width: 56px;
+    height: 56px;
+
+    border: var(--border-width) solid var(--border-color);
+
+    .origin-block {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+
+        background-color: var(--color-background);
+        border: var(--border-width) solid var(--border-color);
+
+        transform: translate(-50%, -50%);
+
+        &.enabled {
+            border-color: var(--color-selected-border);
+            background-color: var(--color-selected-background);
+            
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        &:hover{
+            background-color: var(--color-selected-background);
+        }
+    }
+
+    .origin-top-left { top: 0; left: 0;}
+    .origin-top-center { top: 0; left: 50%;}
+    .origin-top-right { top: 0; left: 100%;}
+
+    .origin-center-left { top: 50%; left: 0%;}
+    .origin-center { top: 50%; left: 50%;}
+    .origin-center-right { top: 50%; left: 100%;}
+
+    .origin-bottom-left { top: 100%; left: 0;}
+    .origin-bottom-center { top: 100%; left: 50%;}
+    .origin-bottom-right { top: 100%; left: 100%;}
+}

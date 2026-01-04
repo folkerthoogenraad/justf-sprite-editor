@@ -12,10 +12,13 @@
     }
 </div>
 
-@for (frame of sprite().frames; track $index) {
-    <app-sprite-frame-outline-component
-        [sprite]="sprite()"
-        [frameIndex]="$index"
-        (frameChange)="updateFrame(frame, $event)"
-        ></app-sprite-frame-outline-component>
-}
+<!-- TODO do something like this, and allow the selection of sprites via the outline! -->
+<!-- @if(state.isFrameTool() && selection.isSelected(sprite())) { -->
+    @for (frame of sprite().frames; track $index) {
+        <app-sprite-frame-outline-component
+            [sprite]="sprite()"
+            [frameIndex]="$index"
+            (frameChange)="updateFrame(frame, $event)"
+            ></app-sprite-frame-outline-component>
+    }
+<!-- } -->

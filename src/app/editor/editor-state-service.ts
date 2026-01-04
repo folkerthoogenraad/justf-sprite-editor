@@ -29,6 +29,9 @@ export class EditorStateService {
   texture = signal<TextureState | undefined>(undefined);
 
   tool = signal(EditorTool.Select);
+  isSelectTool = computed(() => this.tool() === EditorTool.Select);
+  isSpriteTool = computed(() => this.tool() === EditorTool.CreateSprite);
+  isFrameTool = computed(() => this.tool() === EditorTool.CreateFrame);
 
   private _savedResources = signal<Resources | undefined>(undefined);
   private _resources = signal<Resources | undefined>(undefined);
@@ -78,7 +81,7 @@ export class EditorStateService {
   // ================================================= //
   // Editing
   // ================================================= //
-  updateResources(update: (r: Resources | undefined) => Resources | undefined) {
+  updateResources(update: (r: Resources) => Resources | undefined) {
     const r = this._resources();
 
     if(r === undefined) {
@@ -87,7 +90,7 @@ export class EditorStateService {
 
     console.log("Updating....");
 
-    this._resources.update(update);
+    this._resources.set(update(r));
 
     this._resourcesHistory.push(this._resources());
   }

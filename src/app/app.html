@@ -9,6 +9,7 @@
   
   <app-sidebar class="right" right>
     <app-sprite-details [sprite]="selection.selectedSprite()" (spriteChange)="state.updateSprite(selection.selectedSprite(), $event)" />
+    <app-sprite-frame-details [spriteAndFrames]="selection.selectedSpritesAndFrames()" (change)="state.updateResources($event)" />
   </app-sidebar>
 
   <app-sprite-canvas>

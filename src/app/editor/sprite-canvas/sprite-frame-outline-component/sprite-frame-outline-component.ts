@@ -90,7 +90,7 @@ export class SpriteFrameOutlineComponent {
 
     this.dragPointerId = evt.pointerId;
 
-    this.selection.selectFrame(this.sprite(), this.frameIndex(), evt.ctrlKey);
+    this.selection.selectFrame(this.sprite(), this.frameIndex(), evt.ctrlKey || evt.metaKey);
 
     evt.stopImmediatePropagation(); // Prevent others from handling this event.
     evt.preventDefault(); // Prevent weird text selection like things.
@@ -234,7 +234,10 @@ export class SpriteFrameOutlineComponent {
 
     if(frame.x === x && frame.y === y && frame.width === width && frame.height === height) return;
 
-    const updatedFrame = frame.setPosition(x, y).setSize(width, height);
+    const rx = frame.relativeOriginX;
+    const ry = frame.relativeOriginY;
+
+    const updatedFrame = frame.setPosition(x, y).setSize(width, height).setRelativeOrigin(rx, ry);
 
     this.frameChange.emit(updatedFrame);
   }

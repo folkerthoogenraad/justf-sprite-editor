@@ -11,10 +11,11 @@ import { SpriteDetails } from "./editor/sprite-details/sprite-details";
 import { SpriteOutlineComponent } from "./editor/sprite-canvas/sprite-outline-component/sprite-outline-component";
 import { SelectComponent } from "./editor/sprite-canvas/select-component/select-component";
 import { EditorSelectionService } from './editor/editor-selection-service';
+import { SpriteFrameDetails } from "./editor/sprite-frame-details/sprite-frame-details";
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, SpriteCanvas, TextureComponent, Sidebar, TexturesExplorer, SpritesExplorer, SpriteDetails, SpriteOutlineComponent, SelectComponent],
+  imports: [Navbar, SpriteCanvas, TextureComponent, Sidebar, TexturesExplorer, SpritesExplorer, SpriteDetails, SpriteOutlineComponent, SelectComponent, SpriteFrameDetails],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

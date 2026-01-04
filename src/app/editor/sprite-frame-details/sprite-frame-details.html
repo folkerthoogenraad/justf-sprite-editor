@@ -1,0 +1,40 @@
+<div class="sidebar-panel">
+    @let props = properties();
+    
+    <div class="heading">
+        <c-icon icon="icon-properties" />
+        Transform
+    </div>
+    
+    @if(!props) {
+        <p>No frames selected.</p>
+    }
+    
+    @if(props) {
+        <div class="frame-transform">
+            <div class="frame-origin-preview">
+                <div class="origin-editor" (click)="$event.stopImmediatePropagation()">
+                    <div class="origin-block origin-top-left" [class.enabled]="props.isOriginTopLeft" (click)="setOriginPercentage(0, 0)"></div>
+                    <div class="origin-block origin-top-center" [class.enabled]="props.isOriginTopCenter" (click)="setOriginPercentage(0.5, 0)"></div>
+                    <div class="origin-block origin-top-right" [class.enabled]="props.isOriginTopRight" (click)="setOriginPercentage(1, 0)"></div>
+                    
+                    <div class="origin-block origin-center-left" [class.enabled]="props.isOriginCenterLeft" (click)="setOriginPercentage(0, 0.5)"></div>
+                    <div class="origin-block origin-center" [class.enabled]="props.isOriginCenter" (click)="setOriginPercentage(0.5, 0.5)"></div>
+                    <div class="origin-block origin-center-right" [class.enabled]="props.isOriginCenterRight" (click)="setOriginPercentage(1, 0.5)"></div>
+                    
+                    <div class="origin-block origin-bottom-left" [class.enabled]="props.isOriginBottomLeft" (click)="setOriginPercentage(0, 1)"></div>
+                    <div class="origin-block origin-bottom-center" [class.enabled]="props.isOriginBottomCenter" (click)="setOriginPercentage(0.5, 1)"></div>
+                    <div class="origin-block origin-bottom-right" [class.enabled]="props.isOriginBottomRight" (click)="setOriginPercentage(1, 1)"></div>
+                </div>
+            </div>
+            <div class="frame-x">X: {{props.x | cnumber}}</div>
+            <div class="frame-y">Y: {{props.y | cnumber}}</div>
+            <div class="frame-width">W: {{props.width | cnumber}}</div>
+            <div class="frame-height">H: {{props.height | cnumber}}</div>
+            <div class="ox">OX: {{props.originX | cnumber}}</div>
+            <div class="oy">OY: {{props.originY | cnumber}}</div>
+        </div>        
+    }
+</div>
+
+

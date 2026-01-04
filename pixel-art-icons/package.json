@@ -7,9 +7,10 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "convert": "npm run convert-images & npm run convert-fonts",
+    "convert": "npm run convert-images & npm run convert-fonts & npm run convert-cursors",
     "convert-images": "node png-2-svg.js -i \"../src/assets/icons/*.png\" -o \"../src/assets/icons/svg/\"",
-    "convert-fonts": "node svg-2-font.js -i \"../src/assets/icons/svg/\" -o \"../public/icons/\""
+    "convert-fonts": "node svg-2-font.js -i \"../src/assets/icons/svg/\" -o \"../public/icons/\"",
+    "convert-cursors": "node scale-pngs.js -i \"../src/assets/cursors/*.png\" -o \"../public/cursors/\""
   },
   "dependencies": {
     "glob": "^13.0.0",

@@ -16,6 +16,8 @@
     input {
         @include defaults.overlay;
 
+        cursor: var(--cursor-text);
+
         font-family: inherit;
         font-size: inherit;
         text-align: inherit;

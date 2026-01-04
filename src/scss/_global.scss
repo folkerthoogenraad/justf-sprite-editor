@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
 
-    font-family: "Oxygen", sans-serif;
+    font-family: "Noto Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 16px;
@@ -16,7 +16,7 @@ body {
 
     --border-radius: 4px;
     --border-width: 2px;
-    --border-color: #0b1018;
+    --border-color: #545e6d;
     --border-color-light: #4a5463;
 
     --color-white: white;
@@ -59,7 +59,9 @@ body {
 
     --color-navbar-text: #afb5c4;
     --color-navbar-background: #353d47;
-    --color-navbar-border-bottom: black;
+    --color-navbar-border-bottom: #12112e;
+
+    --color-scrollbar: #353d47;
 
     --color-button-default-background: rgb(245, 240, 229);
     --color-button-default-text: #0e2833;
@@ -83,6 +85,25 @@ body {
     --color-input-focussed-background: #1f1e2f;
     --color-input-border: #2a2936;
     --color-input-focussed-border: #6b4949;
+
+    --cursor-default: url('/cursors/cursor-default.png') 0 0, default;
+    --cursor-pointer: url('/cursors/cursor-pointer.png') 6 0, pointer;
+    
+    --cursor-ne-resize: url('/cursors/cursor-resize-ne-sw.png') 10 10, ne-resize;
+    --cursor-sw-resize: url('/cursors/cursor-resize-ne-sw.png') 10 10, sw-resize;
+    --cursor-se-resize: url('/cursors/cursor-resize-nw-se.png') 10 10, se-resize;
+    --cursor-nw-resize: url('/cursors/cursor-resize-nw-se.png') 10 10, nw-resize;
+
+    --cursor-edit-origin: url('/cursors/cursor-edit-origin.png') 0 4, crosshair;
+    
+    --cursor-text: url('/cursors/cursor-edit-text.png') 4 10, text;
+
+    --cursor-n: n-resize;
+    --cursor-e: e-resize;
+    --cursor-s: s-resize;
+    --cursor-w: w-resize;
+
+    cursor: var(--cursor-default);
 }
 
 h1,
@@ -107,19 +128,4 @@ p {
 // Just for hosts having to have inline flex....
 .host-inline-flex {
     display: inline-flex;
-}
-
-.heading-test{ 
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    color: var(--color-navbar-text);
-    background: var(--color-navbar-background);
-    
-    padding: 4px;
-    gap: var(--gap);
-
-    margin-top: var(--gap);
-    margin-bottom: var(--gap);
 }

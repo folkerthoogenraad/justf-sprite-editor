@@ -22,6 +22,6 @@ export class SpriteDetailsFrame {
   delete = output();
 
   onBackgroundClicked(evt: MouseEvent) {
-    this.selection.selectFrame(this.sprite(), this.frameIndex(), evt.shiftKey);
+    this.selection.selectFrame(this.sprite(), this.frameIndex(), evt.ctrlKey || evt.metaKey);
   }
 }

@@ -29,12 +29,13 @@
 }
 
 @mixin clickable {
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
     user-select: none;
 }
 
 @mixin selectable-list-item {
-    cursor: default;
+    cursor: var(--cursor-default);
+
     user-select: none;
 
     padding: 2px 8px;
@@ -63,4 +64,21 @@
 @mixin readable-text {
     color: var(--color-white);
     text-shadow: 1px 1px 3px var(--color-black);
+}
+
+@mixin scrollbar {    
+    scroll-snap-type: y mandatory;
+    scrollbar-gutter: stable;
+    scrollbar-color: var(--color-scrollbar) #0000;
+    scrollbar-width: thin;
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-color) ;
+    }
+
+
+    // The child can use :
+    // scroll-snap-align: start;
+    // If you want to align it.
 }

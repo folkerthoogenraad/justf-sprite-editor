@@ -20,7 +20,7 @@ export class SpriteExplorerItem {
   sprite = input.required<Sprite>();
 
   onClick(evt: MouseEvent){
-    this.selection.select(this.sprite(), evt.ctrlKey);
+    this.selection.select(this.sprite(), evt.ctrlKey || evt.metaKey);
   }
 
   onDoubleClick(evt: MouseEvent) {

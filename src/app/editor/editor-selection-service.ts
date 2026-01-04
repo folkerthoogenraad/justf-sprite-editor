@@ -1,6 +1,8 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { EditorStateService } from './editor-state-service';
-import { Sprite } from '../../ts/Sprite';
+import { Sprite, SpriteFrame } from '../../ts/Sprite';
+
+export type SpriteAndFrames = { sprite: Sprite, frames: SpriteFrame[] };
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +25,7 @@ export class EditorSelectionService {
     
     return resources.getSpriteById(id);
   });
-  selectedSpriteFrames = computed(() => {
+  selectedSpriteFramesIndices = computed(() => {
     const ids = this.selectedSpriteIds();
     const resources = this.state.resources();
 
@@ -35,6 +37,32 @@ export class EditorSelectionService {
     let id = ids.keys().next().value!;
     
     return ids.get(id);
+  });
+  selectedSpritesAndFrames = computed(() => {
+    const ids = this.selectedSpriteIds();
+    const resources = this.state.resources();
+
+    if(!ids || !resources) return undefined;
+
+    const list: SpriteAndFrames[] = [];
+
+    ids.forEach((frameIndices, id) => {
+      const sprite = resources.getSpriteById(id);
+
+      if(sprite === undefined) {
+        return;
+      }
+
+      const frames: SpriteFrame[] = [];
+
+      frameIndices.forEach(frameIndex => {
+        frames.push(sprite.frames[frameIndex]);
+      });
+
+      return list.push({sprite: sprite, frames: frames});
+    });
+
+    return list;
   });
 
   // ================================================= //
@@ -77,6 +105,26 @@ export class EditorSelectionService {
       }
 
       set.add(frame);
+      
+      return map;
+    });
+  }
+  
+  selectAllFrames(sprite: Sprite, keepSelection: boolean = false) {
+    this.selectedSpriteIds.update(x => {
+      let map = keepSelection ? new Map(x) : new Map();
+
+      let set = map.get(sprite.id);
+
+      if(set === undefined) {
+        set = new Set();
+
+        map.set(sprite.id, set);
+      }
+
+      sprite.frames.forEach((_, frameIndex) => {
+        set.add(frameIndex);
+      });
       
       return map;
     });

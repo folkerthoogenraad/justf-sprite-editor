@@ -1,131 +1,129 @@
-<div class="heading-test">
-    <c-icon icon="icon-sprite" /> Preview
-</div>
-
-@if(!sprite()) {
-    <p>No sprite selected (or multiple)</p>
-}
-
-@else {
-    <div class="sprite-preview">
-        <app-sprite-frame-preview-component class="sprite-preview-component" [sprite]="sprite()!" [frameIndex]="animationFrameIndex()" />
-    </div>
-    <div class="controls">
-        <c-button (click)="playAnimation()">
-            @if(this.animationPlaying()) {
-                <c-icon icon="icon-pause"></c-icon>
-            }
-            @else {
-                <c-icon icon="icon-play"></c-icon>
-            }
-        </c-button>
-        <c-button (click)="stopAnimation()">
-            <c-icon icon="icon-stop"></c-icon>
-        </c-button>
-
-        <c-button (click)="nextFrame()">
-            <c-icon icon="icon-chevron-left"></c-icon>
-        </c-button>
-        <c-button (click)="previousFrame()">
-            <c-icon icon="icon-chevron-right"></c-icon>
-        </c-button>
+<div class="sidebar-panel">
+    <div class="heading">
+        <c-icon icon="icon-sprite" /> 
+        <span class="title">Preview</span>
     </div>
 
-    <div class="heading-test">
-        <c-icon icon="icon-properties" /> Properties
-    </div>
+    @if(!sprite()) {
+        <p>No sprite selected (or multiple)</p>
+    }
 
-    <!-- <h4><c-icon icon="icon-properties" /> Properties</h4> -->
-
-    <div class="sprite-properties-table">
-        <span class="heading">Sprite</span>
-
-        <span class="key fixed">Id </span>
-        <span class="value-full">
-            <c-text-input [value]="sprite()!.id" (valueChange)="updateSpriteId($event)" />    
-        </span>
-
-        <span class="key fixed">Texture </span>
-        <span class="value-full">{{ sprite()?.texture }}</span>
-
-        <span class="key fixed">Frame rate </span>
-        <span class="value">
-            <c-number-input [value]="sprite()!.frameRate" (valueChange)="updateSpriteFrameRate($event)" />    
-        </span>
-        <span class="actions">FPS</span>
-
-        
-        <span class="heading">Frame</span>
-
-        <span class="key fixed">Position </span>
-        <span class="value-full">
-            {{sprite()?.getBounds()?.top}}x{{sprite()?.getBounds()?.left}}
-        </span>
-        <span class="key fixed">Size </span>
-        <span class="value-full">
-            {{sprite()?.getBounds()?.width}}x{{sprite()?.getBounds()?.width}}
-        </span>
-
-        <span class="key fixed">Origin </span>
-        <span class="value-full">
-            {{sprite()?.getBounds()?.width}}x{{sprite()?.getBounds()?.width}}
-        </span>
-
-        @for (property of sprite()!.properties.properties; track $index) {
-            <span class="key" [title]="property.name + ' - ' + property.type">
-                <c-text-input [value]="property.name" (valueChange)="updatePropertyName(property, $event)" />    
-            </span>
-            <span class="value">
-                @switch (property.type) {
-                    @case("Float") {
-                        <c-number-input type="Float" [value]="property.value" (valueChange)="updatePropertyValue(property, $event)" />
-                    }
-                    @case("Integer") {
-                        <c-number-input type="Integer" [value]="property.value" (valueChange)="updatePropertyValue(property, $event)" />
-                    }
-                    @default {
-                        <c-text-input [value]="property.value" (valueChange)="updatePropertyValue(property, $event)" />
-                    }
+    @else {
+        <div class="sprite-preview">
+            <app-sprite-frame-preview-component class="sprite-preview-component" [sprite]="sprite()!" [frameIndex]="animationFrameIndex()" />
+        </div>
+        <div class="controls">
+            <c-button (click)="playAnimation()">
+                @if(this.animationPlaying()) {
+                    <c-icon icon="icon-pause"></c-icon>
                 }
+                @else {
+                    <c-icon icon="icon-play"></c-icon>
+                }
+            </c-button>
+            <c-button (click)="stopAnimation()">
+                <c-icon icon="icon-stop"></c-icon>
+            </c-button>
+
+            <c-button (click)="nextFrame()">
+                <c-icon icon="icon-chevron-left"></c-icon>
+            </c-button>
+            <c-button (click)="previousFrame()">
+                <c-icon icon="icon-chevron-right"></c-icon>
+            </c-button>
+        </div>
+
+        <div class="heading">
+            <c-icon icon="icon-properties" />
+        <span class="title">Properties</span>
+        </div>
+
+        <!-- <h4><c-icon icon="icon-properties" /> Properties</h4> -->
+
+        <div class="sprite-properties-table">
+            <span class="key fixed">Id </span>
+            <span class="value-full">
+                <c-text-input [value]="sprite()!.id" (valueChange)="updateSpriteId($event)" />    
             </span>
-            <span class="actions">
-                <c-dropdown-button>
-                    <div class="button-content">
-                        <c-icon icon="icon-change-type-7x7" x14 />
-                    </div>
 
-                    <div class="dropdown-items">
-                        <strong>Select type</strong>
-                        <c-toggle-button [enabled]="property.type === 'Float'" (click)="updatePropertyType(property, 'Float')">Float</c-toggle-button>
-                        <c-toggle-button [enabled]="property.type === 'Integer'" (click)="updatePropertyType(property, 'Integer')">Integer</c-toggle-button>
-                        <c-toggle-button [enabled]="property.type === 'String'" (click)="updatePropertyType(property, 'String')">String</c-toggle-button>
-                    </div>
-                </c-dropdown-button>
-                <c-button title="Delete property" (click)="deleteProperty(property)"><c-icon icon="icon-delete-7x7" x14 /></c-button>
+            <span class="key fixed">Texture </span>
+            <span class="value-full">{{ sprite()?.texture }}</span>
+
+            <span class="key fixed">Frame rate </span>
+            <span class="value">
+                <c-number-input [value]="sprite()!.frameRate" (valueChange)="updateSpriteFrameRate($event)" />    
             </span>
-        }
+            <span class="actions">FPS</span>
+            <span class="key fixed">Position </span>
+            <span class="value-full">
+                {{sprite()?.getBounds()?.top}} x {{sprite()?.getBounds()?.left}}
+            </span>
+            <span class="key fixed">Bounds </span>
+            <span class="value-full">
+                {{sprite()?.getBounds()?.width}} x {{sprite()?.getBounds()?.width}}
+            </span>
 
-        <span class="key">
-            <c-button title="Add property"  (click)="addNewProperty()"><c-icon icon="icon-plus" />Add</c-button>
-        </span>
-    </div>
-    
-    <div class="heading-test">
-        <c-icon icon="icon-frame" /> Frames
-    </div>
-    
-    <div class="sprite-frames">
-        @for (frame of sprite()?.frames; track $index) {
-            <app-sprite-details-frame class="frame" 
-                [sprite]="sprite()!" 
-                [frameIndex]="$index"
-                [canDelete]="sprite()!.frames.length > 1"
-                (delete)="removeFrame($index)"
-                />
-        }
+            @for (property of sprite()!.properties.properties; track $index) {
+                <span class="key" [title]="property.name + ' - ' + property.type">
+                    <c-text-input [value]="property.name" (valueChange)="updatePropertyName(property, $event)" />    
+                </span>
+                <span class="value">
+                    @switch (property.type) {
+                        @case("Float") {
+                            <c-number-input type="Float" [value]="property.value" (valueChange)="updatePropertyValue(property, $event)" />
+                        }
+                        @case("Integer") {
+                            <c-number-input type="Integer" [value]="property.value" (valueChange)="updatePropertyValue(property, $event)" />
+                        }
+                        @default {
+                            <c-text-input [value]="property.value" (valueChange)="updatePropertyValue(property, $event)" />
+                        }
+                    }
+                </span>
+                <span class="actions">
+                    <c-dropdown-button>
+                        <div class="button-content">
+                            <c-icon icon="icon-change-type-7x7" x14 />
+                        </div>
 
-        <c-button class="frame add-frame"  (click)="addFrame()">
-            <c-icon icon="icon-add-frame"></c-icon>
-        </c-button>
-    </div>
-}
+                        <div class="dropdown-items">
+                            <strong>Select type</strong>
+                            <c-toggle-button [enabled]="property.type === 'Float'" (click)="updatePropertyType(property, 'Float')">Float</c-toggle-button>
+                            <c-toggle-button [enabled]="property.type === 'Integer'" (click)="updatePropertyType(property, 'Integer')">Integer</c-toggle-button>
+                            <c-toggle-button [enabled]="property.type === 'String'" (click)="updatePropertyType(property, 'String')">String</c-toggle-button>
+                        </div>
+                    </c-dropdown-button>
+                    <c-button title="Delete property" (click)="deleteProperty(property)"><c-icon icon="icon-delete-7x7" x14 /></c-button>
+                </span>
+            }
+
+            <span class="key">
+                <c-button title="Add property"  (click)="addNewProperty()"><c-icon icon="icon-plus" />Add</c-button>
+            </span>
+        </div>
+        
+        <div class="heading">
+            <c-icon icon="icon-frame" />
+            <span class="title">Frames</span>
+            <div class="actions">
+                <c-button (click)="selection.selectAllFrames(sprite()!)" title="Select all frames"><c-icon icon="icon-select-all" /></c-button>
+            </div>
+        </div>
+        
+        <div class="sprite-frames">
+            @for (frame of sprite()?.frames; track $index) {
+                <app-sprite-details-frame class="frame" 
+                    [sprite]="sprite()!" 
+                    [frameIndex]="$index"
+                    [canDelete]="sprite()!.frames.length > 1"
+                    (delete)="removeFrame($index)"
+                    />
+            }
+
+            <c-button class="frame add-frame"  (click)="addFrame()">
+                <c-icon icon="icon-add-frame"></c-icon>
+            </c-button>
+        </div>
+    }
+
+</div>

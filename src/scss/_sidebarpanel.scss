@@ -1,6 +1,9 @@
 @use "defaults" as defaults;
 
 .sidebar-panel {
+    display: flex;
+    flex-direction: column;
+    
     .heading {
         padding: 4px;
         display: flex;
